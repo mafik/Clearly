@@ -39,7 +39,11 @@ section, p, h1, h2, h3, h4, h5, h6, dl, ul, ol, pre, blockquote {
   border-radius: 10px;
   padding: 0 0 0 10px;
   margin: 10px 0;
+  -webkit-transition: .1s all;
   -moz-transition: .1s all;
+  -ms-transition: .1s all;
+  -o-transition: .1s all;
+  transition: .1s all;
   min-height: 1em;
 }
 section {
