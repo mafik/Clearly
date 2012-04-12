@@ -179,7 +179,7 @@ $Clearly.deleteActive = function(saveToKillRing) {
 
 (function() {
   var scrollFunction = function(pos) {
-    $('html').animate({ scrollTop:pos }, {duration: 200, queue: false});
+    $('html, body').animate({ scrollTop:pos }, {duration: 200, queue: false});
   };
   $.fn.scrollShow = function() {
     if(this.length > 0) {
