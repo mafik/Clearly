@@ -3,7 +3,7 @@
  * @license: GPLv3
  */
 
-$Clearly = { selector : 'h1, h2, h3, h4, h5, h6, section, p, blockquote, dl, ul, ol, pre, hr'
+$Clearly = { selector : 'h1, h2, h3, h4, h5, h6, section, p, blockquote, ul, ol, pre, hr, li'
         , active : undefined
         , killring : []
         , activity : []
@@ -171,10 +171,10 @@ $Clearly.deleteActive = function(saveToKillRing) {
   $.fn.removeEmptyTextNodes = function() {
     this.contents().filter(filterFunction).remove();
     return this;
-  }
+  };
   $.fn.textNodes = function() {
     return this.contents().filter(filterTextNodes);
-  }
+  };
 })();
 
 (function() {
@@ -453,7 +453,7 @@ $Clearly.smartNew = function() {
       $Clearly.active.removeClass('compact');
     }
     $Clearly.active.scrollShow(200);
-  }
+  };
 
   $Clearly.nav.down = function() {
     $Clearly.active.next($Clearly.selector).activate().scrollShow();
@@ -517,14 +517,13 @@ $Clearly.smartNew = function() {
   register_tag(85, 'ul'); // u
   register_tag(69, 'section'); // e
   //register_tag(69, 'blockquote'); // o
-  //register_tag(79, 'pre'); // e
+  register_tag(79, 'ol'); // o
   
   // Shift - odwrócenie kolejności
   // Ctrl - nowy element
   // Pierwszy plus za specyfikacje, drugi za implementacje
   // u - ul
   // o - ol
-  // i - dl
   // e - section
   // \ - hr
   // p - p

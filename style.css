@@ -34,7 +34,7 @@ html {
   -moz-font-feature-settings: "frac=1";
   -ms-font-feature-settings: "frac" 1;
 }
-section, p, h1, h2, h3, h4, h5, h6, dl, ul, ol, pre, blockquote {
+section, p, h1, h2, h3, h4, h5, h6, ul, ol, pre, blockquote {
   border-left: 5px solid #d8d8d0;
   border-radius: 10px;
   padding: 0 0 0 10px;
@@ -64,7 +64,7 @@ section {
   overflow: hidden;
   font-size: 10px;
 }
-.compact h1, .compact h2, .compact h3, .compact h4, .compact h5, .compact h6, .compact p, .compact ul, .compact ol, .compact dl, .compact pre, .compact section {
+.compact h1, .compact h2, .compact h3, .compact h4, .compact h5, .compact h6, .compact p, .compact ul, .compact ol, .compact pre, .compact section {
   font-size: 1em !important;
   text-indent: 0 !important;
   color: #a8a8a0 !important;
@@ -86,7 +86,7 @@ h4 { padding: 0 16px; font-size: 1.5em; }
 a { color: #983a5e; text-decoration: none; }
 /* p { text-indent: 1em; } */
 h1 + p, h2 + p, h3 + p, h4 + p, h5 + p, h6 + p, p:first-child { text-indent: 0; }
-dl, ul, ol, p {
+ul, ol, p {
   line-height: 1.5em;
   /* max-width: 40em; */
   min-height: 1.5em;
@@ -106,7 +106,7 @@ pre {
   padding-top: .25em;
   padding-bottom: .25em;
 }
-ul, ol, dl {
+ul, ol {
     padding-left: 16px;
 }
 pre, code { 
