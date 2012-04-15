@@ -226,12 +226,12 @@ $Clearly.deleteActive = function(saveToKillRing) {
 
 
 $Clearly.removeSection = function() {
-  var a = $Clearly.active.parent().closest('section').children().unwrap();
-  a.scrollShow();
+  $Clearly.active.parent().closest('section').children().unwrap();
+  $Clearly.active.scrollShow();
 };
 
 $Clearly.makeSection = function() {
-  var wrapped = $Clearly.active.closest("h1, h2, h3, h4, h5, h6, p, pre, blockquote, ul, ol");
+  var wrapped = $Clearly.active.closest("h1, h2, h3, h4, h5, h6, p, pre, blockquote, ul, ol, section");
   wrapped.wrap('<section></section>');
   $Clearly.active.scrollShow();
 };
