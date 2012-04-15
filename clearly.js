@@ -263,12 +263,14 @@ $Clearly.smartNew = function() {
   } else {
     inside = false; tag = '<p></p>';
   }
+  var mark_todo = $Clearly.todo.isTask(a);
   if(inside) {
+    mark_todo = $Clearly.todo.isTask(a.children().last());
     a.append(tag).children().last().activate();
   } else {
     a.after(tag).next().activate();
   }
-  if($Clearly.todo && $Clearly.todo.isTask(a)) {
+  if(mark_todo) {
     $Clearly.todo.first();
   }
 };
