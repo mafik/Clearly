@@ -3,13 +3,13 @@
  * @license: GPLv3
  */
 
-$Clearly = { selector : 'h1, h2, h3, h4, h5, h6, section, p, blockquote, ul, ol, pre, hr, li'
-        , active : undefined
-        , killring : []
-        , activity : []
-        , on : {}
-        , install : {} };
-        
+$Clearly = { selector : 'h1, h2, h3, h4, h5, h6, section, p, blockquote, ul, ol, pre, hr, li',
+             active : undefined,
+             killring : [],
+             activity : [],
+             on : {},
+             install : {} };
+
 $Clearly.Mode = function(name) { this.name = name; };
 $Clearly.Mode.prototype.bind = function(o, f) {
   var end = this, queue = ['ctrl', 'shift', 'meta', 'alt'];
@@ -124,7 +124,7 @@ $.fn.isReal = function() {
     element = element.parentNode;
   }
   return false;
-}
+};
 
 
 $.fn.activate = function(){
@@ -520,13 +520,20 @@ $Clearly.smartNew = function() {
     b.activate().scrollShow();
   };
   
-  function register_tag(code, tag) {
-    $Clearly.nav.bind({ctrl:false, code:code}, function(event) {
-      $Clearly.changeTag(tag);
-      $Clearly.save();
-      event.preventDefault();
-    });
-    
+  // TODO: Everything below this comment is a mess & needs fixing.
+  
+  var keys = {
+	p: 80,
+	b: 66,
+	e: 69,
+	u: 85,
+	o: 79,
+	';': 186,
+	'\\': 220,
+	'1': 49, '2': 50, '3': 51, '4': 52, '5': 53, '6': 54
+      };
+  
+  function bind_tag_creation(code, tag) {
     $Clearly.nav.bind({ctrl:true, code:code}, function(event) {
       if(event.shiftKey) {
         $Clearly.active.before(tag).prev().activate().scrollShow();
@@ -538,43 +545,132 @@ $Clearly.smartNew = function() {
     });
   }
   
-  register_tag(80, '<p></p>'); // p
-  register_tag(66, '<blockquote></blockquote>'); // b
-  register_tag(186, '<pre></pre>'); // pre
+  function bind_tag_conversion(code, tag) {
+    $Clearly.nav.bind({ctrl:false, code:code}, function(event) {
+      $Clearly.changeTag(tag);
+      $Clearly.save();
+      event.preventDefault();
+    });
+  }
+  
+  // FIXME: serious cleaning needed
+  
+  // TODO: This function should be integrated with $Clearly.changeTag (possibly even into jquery)
+  function change_tag(a, tag) {
+    a.wrapInner(tag);
+    var b = a.children().first();
+    for(var i = 0,
+            attributes = a.get(0).attributes;
+	i < attributes.length; ++i) {
+      
+      b.attr(attributes[i].name, attributes[i].value);
+      
+    }
+    b.unwrap();
+  }
+  
+  function bind_simple_tag(code, tag) {
+    bind_tag_creation(code, tag);
 
-  register_tag(69, '<section></section>'); // e
+    $Clearly.nav.bind({ctrl:false, code:code}, function(event) {
+      if($Clearly.active.is('h1, h2, h3, h4, h5, h6, p, blockquote, pre')) {
+	$Clearly.changeTag(tag);
+      } else if($Clearly.active.is('li')) {
+	
+	change_tag($Clearly.active.parent(), '<section></section>');
+	$Clearly.active.siblings().andSelf().each(function(i, e) {
+	  change_tag($(e), tag);
+	});
+	$('.active').activate();
+	
+      }
+      $Clearly.save();
+      event.preventDefault();
+    });
+  };
+  
+  bind_simple_tag(keys.p, '<p></p>'); // p
+  bind_simple_tag(keys.b, '<blockquote></blockquote>'); // b
+  bind_simple_tag(keys[';'], '<pre></pre>'); // pre
 
-  register_tag(85, '<ul><li></li></ul>'); // u
-  register_tag(79, '<ol><li></li></ul>'); // o
-
+  for(var i=0; i<6; ++i) {
+    bind_simple_tag(i+49, '<h' + (i+1) + ' />');
+  }
   
   /**
-   * ";" changes current node to pre. All sub-nodes are joined and
-   *     stripped of tags and only their text contents are saved.
-   *     Old contents are saved in the killring.
-   * Ctrl + [Shift] + ";" creates new pre element and starts edit mode (if in section or toplevel)
+   * Sections: e
    */
+
+  bind_tag_creation(keys.e, '<section><p></p></section>');
+
+  $Clearly.nav.bind({ctrl:false, code:keys.e}, function(event) {
+    if($Clearly.active.is('ul, ol')) {
+      $Clearly.changeTag("<section></section>");
+      $Clearly.active.children().each(function(i, e) {
+	change_tag($(e), "<p></p>");
+      });
+    }
+    $Clearly.save();
+    event.preventDefault();
+  });
   
   /**
-   * 1..6 changes tag of selection to a header (from other header or paragraph)
-   * Ctrl + [Shift] + 1..6 creates new header and starts edit mode (if in section or toplevel)
+   * Unordered lists: u
    */
   
-  for(var i=0; i<6; ++i)
-    register_tag((i+49).toString(), '<h' + (i+1) + ' />');
+  bind_tag_creation(keys.u, '<ul><li></li></ul>');
+
+  $Clearly.nav.bind({ctrl:false, code:keys.u}, function(event) {
+    if($Clearly.active.is('section')) {
+      var allowed = $Clearly.active.find('h1, h2, h3, h4, h5, h6, p, pre, blockquote, li');
+      $Clearly.changeTag("<ul></ul>");
+      $Clearly.active.empty().append(allowed);
+      $Clearly.active.children().each(function(i, e) {
+	change_tag($(e), "<li></li>");
+      });
+    } else if($Clearly.active.is('ol')) {
+      $Clearly.changeTag("<ul></ul>");
+    } else if($Clearly.active.parent().is('ol')) {
+      change_tag($Clearly.active.parent(), "<ul></ul>");
+    }
+    $Clearly.save();
+    event.preventDefault();
+  });
+  
+  /**
+   * Ordered lists: o
+   */
+
+  bind_tag_creation(keys.o, '<ol><li></li></ul>');
+
+  $Clearly.nav.bind({ctrl:false, code:keys.o}, function(event) {
+    if($Clearly.active.is('section')) {
+      var allowed = $Clearly.active.find('h1, h2, h3, h4, h5, h6, p, pre, blockquote, li');
+      $Clearly.changeTag("<ol></ol>");
+      $Clearly.active.empty().append(allowed);
+      $Clearly.active.children().each(function(i, e) {
+	change_tag($(e), "<li></li>");
+      });
+    } else if($Clearly.active.is('ul')) {
+      $Clearly.changeTag("<ol></ol>");
+    } else if($Clearly.active.parent().is('ul')) {
+      change_tag($Clearly.active.parent(), "<ol></ol>");
+    }
+    $Clearly.save();
+    event.preventDefault();
+  });
+  
     
   /**
-   * [Ctrl] + \ creates new horizontal rule after currently selected tag (if in section or toplevel)
-   * [Ctrl] + Shift + \ creates new rule before currently selected tag (if in section or toplevel)
+   * Horizontal rules: \
    */
-  
-  $Clearly.nav.bind({ctrl:true, code:'220'}, function(event) {
+    
+  $Clearly.nav.bind({ctrl:true, code:keys['\\']}, function(event) {
     if(event.shiftKey) {
       $Clearly.active.before('<hr>').prev().scrollShow();
     } else {
       $Clearly.active.after('<hr>').next().scrollShow();
     }
-    $Clearly.save();
     event.preventDefault();
   });
   
