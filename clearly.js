@@ -72,7 +72,7 @@ $Clearly.keydown = function(event) {
              , meta : event.metaKey
              , code : event.keyCode };
   
-  // console.log(data);
+  console.log(data);
   for(i in $Clearly.on) {
     end.push($Clearly.on[i]);
   }
@@ -552,11 +552,11 @@ $Clearly.smartNew = function() {
    * [Ctrl] + Shift + \ creates new rule before currently selected tag (if in section or toplevel)
    */
   
-  $Clearly.nav.bind({ctrl:true, code:'82'}, function(event) {
-    if(event.shiftKey) {
-      $Clearly.active.before('<hr>').prev().activate().scrollShow();
+  $Clearly.nav.bind({ctrl:true, code:'220'}, function(event) {
+    if(event.altKey) {
+      $Clearly.active.before('<hr>').prev().scrollShow();
     } else {
-      $Clearly.active.after('<hr>').next().activate().scrollShow();
+      $Clearly.active.after('<hr>').next().scrollShow();
     }
     $Clearly.save();
     event.preventDefault();

@@ -121,8 +121,13 @@ li, dt {
   list-style-image: url('bullet.png');
 }
 hr {
-  border: 2px solid #d8d8d0;
-  border-radius: 4px;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  border: 2px dashed #d8d8d0;
+}
+hr.active {
+  border-left: none;
+  border-color: #4a4c3b;
 }
 .todo {
   color: #924332;
