@@ -72,7 +72,7 @@ $Clearly.keydown = function(event) {
              , meta : event.metaKey
              , code : event.keyCode };
   
-  console.log(data);
+  console.log(JSON.stringify(data, null, '  '));
   for(i in $Clearly.on) {
     end.push($Clearly.on[i]);
   }
@@ -148,10 +148,26 @@ $.fn.activate = function(){
 };
 
 $Clearly.deleteActive = function(saveToKillRing) {
+
+  var next = $Clearly.active.next();
+  if(next.length == 0) {
+    next = $Clearly.active.prev();
+  }
+  if(next.length == 0) {
+    next = $Clearly.active.parent($Clearly.selector);
+  }
+  if(next.length == 0) {
+    next = $('body').append("<p \>").children().last();
+  }
+
   $Clearly.active.remove();
   if(saveToKillRing) {
     $Clearly.killring.push($Clearly.active);
   }
+  
+  next.activate().scrollShow();
+  
+  /*
   while($Clearly.activity.length > 0) {
     var candidate = $Clearly.activity.pop();
     if(candidate.isReal()) {
@@ -159,6 +175,7 @@ $Clearly.deleteActive = function(saveToKillRing) {
       break;
     }
   }
+   */
 };
 
 (function() {
@@ -221,7 +238,7 @@ $Clearly.makeSection = function() {
 
 $Clearly.changeTag = function(x) {
   var a = $Clearly.active, b;
-  a.wrapInner('<'+x+'></'+x+'>');
+  a.wrapInner(x);
   b = a.children().first();
   b.attr('class', a.attr('class'));
   if(a.attr('contenteditable')) b.attr('contenteditable', 'true');
@@ -241,12 +258,8 @@ $Clearly.smartNew = function() {
     inside = true; tag = '<p></p>';
   } else if(a.is('ul, ol')) {
     inside = true; tag = '<li></li>';
-  } else if(a.is('dl')) {
-    inside = true; tag = '<dt></dt>';
-  } else if(a.is('dt')) {
-    inside = false; tag = '<dd></dd>';
-  } else if(a.is('dd')) {
-    inside = false; tag = '<dt></dt>';
+  } else if(a.is('li')) {
+    inside = false; tag = '<li></li>';
   } else {
     inside = false; tag = '<p></p>';
   }
@@ -268,7 +281,17 @@ $Clearly.smartNew = function() {
     a.removeEmptyTextNodes();
     if(a.is('section')) {
       a.textNodes().wrap("<p></p>");
+      a.find('div').each(function(i, e) {
+	$(e).wrap('<p></p>');
+	$(e).after($(e).contents());
+	$(e).remove();
+      });
+      //a.children('br').remove();
+    } else if(a.is('ul, ol')) {
       a.children('br').remove();
+      a.contents().not('li').wrap("<li></li>");
+      a.find('div').children().unwrap();
+      a.textNodes().wrap("<li></li>");
     } else if(a.is('blockquote')) {
       var c = a.contents();
       while(c.length) {
@@ -503,34 +526,26 @@ $Clearly.smartNew = function() {
     });
     
     $Clearly.nav.bind({ctrl:true, code:code}, function(event) {
-      if(event.altKey) {
-        $Clearly.active.before('<'+tag+' />').prev().activate().scrollShow();
+      if(event.shiftKey) {
+        $Clearly.active.before(tag).prev().activate().scrollShow();
       } else {
-        $Clearly.active.after('<'+tag+' />').next().activate().scrollShow();
+        $Clearly.active.after(tag).next().activate().scrollShow();
       }
       $Clearly.edit.start();
       event.preventDefault();
     });
   }
   
-  register_tag(80, 'p'); // p
-  register_tag(85, 'ul'); // u
-  register_tag(69, 'section'); // e
-  //register_tag(69, 'blockquote'); // o
-  register_tag(79, 'ol'); // o
+  register_tag(80, '<p></p>'); // p
+  register_tag(66, '<blockquote></blockquote>'); // b
+  register_tag(186, '<pre></pre>'); // pre
+
+  register_tag(69, '<section></section>'); // e
+
+  register_tag(85, '<ul><li></li></ul>'); // u
+  register_tag(79, '<ol><li></li></ul>'); // o
+
   
-  // Shift - odwrócenie kolejności
-  // Ctrl - nowy element
-  // Pierwszy plus za specyfikacje, drugi za implementacje
-  // u - ul
-  // o - ol
-  // e - section
-  // \ - hr
-  // p - p
-  // +1-6 - h#
-  // ' - blockquote
-  // +; - pre
-  // enter - smart edit/create
   /**
    * ";" changes current node to pre. All sub-nodes are joined and
    *     stripped of tags and only their text contents are saved.
@@ -544,7 +559,7 @@ $Clearly.smartNew = function() {
    */
   
   for(var i=0; i<6; ++i)
-    register_tag((i+49).toString(), 'h' + (i+1));
+    register_tag((i+49).toString(), '<h' + (i+1) + ' />');
     
   /**
    * [Ctrl] + \ creates new horizontal rule after currently selected tag (if in section or toplevel)
@@ -552,7 +567,7 @@ $Clearly.smartNew = function() {
    */
   
   $Clearly.nav.bind({ctrl:true, code:'220'}, function(event) {
-    if(event.altKey) {
+    if(event.shiftKey) {
       $Clearly.active.before('<hr>').prev().scrollShow();
     } else {
       $Clearly.active.after('<hr>').next().scrollShow();
@@ -707,7 +722,7 @@ $Clearly.smartNew = function() {
 
 (function() {
   $Clearly.todo = new $Clearly.Mode('todo');
-  $Clearly.todo.states = ['todo', 'working', 'cancelled', 'done'];
+  $Clearly.todo.states = ['todo', 'working', 'done', 'cancelled'];
   
   $Clearly.todo.getStates = function(elem) {
     var a = elem.closest('[data-todo-states]');
@@ -738,7 +753,7 @@ $Clearly.smartNew = function() {
   };
   
   $Clearly.todo.first = function() {
-    var a = $Clearly.active
+    var a = $Clearly.active;
     var s = this.getStates(a);
     for(var i = 0; i<s.length; ++i) {
       if(a.is('.' + s[i])) {
@@ -753,7 +768,7 @@ $Clearly.smartNew = function() {
   
   $Clearly.todo.toggle = function(forward) {
     //console.log('toggle with', forward);
-    var a = $Clearly.active
+    var a = $Clearly.active;
     var s = this.getStates(a);
     for(var i = 0; i<s.length; ++i) {
       if(a.is('.' + s[i])) {
@@ -774,27 +789,17 @@ $Clearly.smartNew = function() {
         a.addClass(s[i+1]);
       }
     }
-  }
+  };
   
   $Clearly.nav.bind({ ctrl:false
                  , alt:false
                  , meta:false
-                 , code:'90'}, function(event) { // [shift] z
+                 , code:'9'}, function(event) { // [shift] tab
     $Clearly.todo.toggle(!event.shiftKey);
     $Clearly.save();
     event.preventDefault();
   });
   
-  $Clearly.nav.bind( { ctrl: true
-                  , shift:false
-                  , alt:false
-                  , meta:false
-                  , code:'90'}, function(event) { // z
-    $Clearly.smartNew();
-    $Clearly.todo.first();
-    $Clearly.edit.start();
-    event.preventDefault();
-  });
 })();
 
 $Clearly.nav.start();
