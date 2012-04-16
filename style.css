@@ -34,21 +34,19 @@ html {
   -moz-font-feature-settings: "frac=1";
   -ms-font-feature-settings: "frac" 1;
 }
-section {
-  border-left: 5px solid #d8d8d0;
-}
 section, p, h1, h2, h3, h4, h5, h6, ul, ol, pre, blockquote {
   border-radius: 10px;
   padding: 0 0 0 10px;
   margin: 10px 0;
-  -webkit-transition: .1s all;
-  -moz-transition: .1s all;
-  -ms-transition: .1s all;
-  -o-transition: .1s all;
-  transition: .1s all;
+  -webkit-transition: .2s all;
+  -moz-transition: .2s all;
+  -ms-transition: .2s all;
+  -o-transition: .2s all;
+  transition: .2s all;
   min-height: 1em;
 }
 section {
+  border-left: 5px solid #d8d8d0;
   min-height: 10px;
   border-top: 1px dashed #d8d8d0;
   border-bottom: 1px dashed #d8d8d0;
@@ -86,8 +84,50 @@ h2 { font-size: 3em; }
 h3 { font-size: 2em; }
 h4 { padding: 0 16px; font-size: 1.5em; }
 a { color: #983a5e; text-decoration: none; }
-/* p { text-indent: 1em; } */
+
+/*
+p { text-indent: 1em; }
 h1 + p, h2 + p, h3 + p, h4 + p, h5 + p, h6 + p, p:first-child { text-indent: 0; }
+❡❦❖❝❞♯
+*/
+h1.active:after {
+    content: ' ♯1';
+}
+h2.active:after {
+    content: ' ♯2';
+}
+h3.active:after {
+    content: ' ♯3';
+}
+h4.active:after {
+    content: ' ♯4';
+}
+h5.active:after {
+    content: ' ♯5';
+}
+h6.active:after {
+    content: ' ♯6';
+}
+blockquote.active:after {
+    content: ' ❞';
+}
+blockquote.active:before {
+    content: '❝ ';
+}
+pre.active:after {
+    content: ' ❖';
+}
+li.active:after {
+    content: ' ❦';
+}
+p.active:after {
+    content: ' ❡';
+}
+
+.active[contenteditable=true]:after, .active[contenteditable=true]:before {
+    color: #d8d8d0;
+}
+
 ul, ol, p {
   line-height: 1.5em;
   /* max-width: 40em; */
@@ -121,10 +161,19 @@ dt { font-style: italic; }
 ul > li {
   display: list-item;
   list-style-position: outside;
-  padding-left: 0px;
   list-style-image: url('bullet.png');
 }
 ol > li {
+}
+
+li {
+    -webkit-transition: .5s all;
+    -moz-transition: .5s all;
+    padding-left: 0px;
+}
+li.active {
+    padding-left: 10px;
+    border-left-color: #d8d8d0;
 }
 
 hr {

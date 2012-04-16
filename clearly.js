@@ -66,13 +66,15 @@ $Clearly.nav.bind({code:'i'}, minimode.start);
 
 $Clearly.keydown = function(event) {
   var end = [], queue = ['ctrl', 'shift', 'meta', 'alt', 'code'], i, j;
-  var data = { shift : event.shiftKey
-             , ctrl : event.ctrlKey
-             , alt : event.altKey
-             , meta : event.metaKey
-             , code : event.keyCode };
+  var data = { shift : event.shiftKey,
+	       ctrl : event.ctrlKey,
+	       alt : event.altKey,
+	       meta : event.metaKey,
+	       code : event.keyCode
+	     };
   
-  console.log(JSON.stringify(data, null, '  '));
+  //console.log(JSON.stringify(data, null, '  '));
+  console.log(JSON.stringify(data));
   for(i in $Clearly.on) {
     end.push($Clearly.on[i]);
   }
@@ -526,6 +528,7 @@ $Clearly.smartNew = function() {
 	p: 80,
 	b: 66,
 	e: 69,
+	r: 82,
 	u: 85,
 	o: 79,
 	';': 186,
@@ -693,6 +696,12 @@ $Clearly.smartNew = function() {
   $Clearly.nav.bind({code:'72'}, function(event) { // h
     $Clearly.nav.hide();
     $Clearly.save();
+    event.preventDefault();
+  });
+  
+  $Clearly.nav.bind({ctrl:true, code:keys.r}, function(event) { // Ctrl + r
+    delete localStorage.body_contents;
+    location.reload(true);
     event.preventDefault();
   });
   
