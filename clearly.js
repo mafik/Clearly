@@ -536,6 +536,7 @@ $Clearly.smartNew = function() {
 	r: 82,
 	u: 85,
 	o: 79,
+	s: 83,
 	';': 186,
 	'\\': 220,
 	'1': 49, '2': 50, '3': 51, '4': 52, '5': 53, '6': 54
@@ -704,10 +705,27 @@ $Clearly.smartNew = function() {
     event.preventDefault();
   });
   
+  $Clearly.nav.bind({ctrl:true, code:keys.s}, function(event) { // Ctrl + s
+    
+    $Clearly.save();
+    localStorage[location.pathname + '~'] = localStorage[location.pathname];
+    event.preventDefault();
+
+  });
+  
   $Clearly.nav.bind({ctrl:true, code:keys.r}, function(event) { // Ctrl + r
-    delete localStorage[location.pathname];
+
+    if(event.shiftKey) delete localStorage[location.pathname + '~'];
+
+    if(localStorage[location.pathname + '~']) {
+      localStorage[location.pathname] = localStorage[location.pathname + '~'];
+    } else {
+      delete localStorage[location.pathname];
+    }
+
     location.reload(true);
     event.preventDefault();
+
   });
   
   $Clearly.nav.bind({ctrl:true, shift:true, code:'37'}, function(event) { // left
