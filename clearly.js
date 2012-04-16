@@ -100,7 +100,7 @@ $Clearly.keydown = function(event) {
 };
         
 $Clearly.save = function() {
-  localStorage['body_contents'] = $('body').html();
+  localStorage[location.pathname] = $('body').html();
 };
 
 $Clearly.load = function() {
@@ -108,8 +108,8 @@ $Clearly.load = function() {
     console.warn('Your browser is killing Clearly. Trace this message if you want to know why.');
     console.info('If you want to use Clearly without interruptions switch to HTML5 compatible browser.');
   }
-  if(localStorage.body_contents) {
-    $('body').html(localStorage.body_contents);
+  if(localStorage[location.pathname]) {
+    $('body').html(localStorage[location.pathname]);
     $Clearly.active = $('.active');
   } else {
     $($Clearly.selector).first().activate();
@@ -705,7 +705,7 @@ $Clearly.smartNew = function() {
   });
   
   $Clearly.nav.bind({ctrl:true, code:keys.r}, function(event) { // Ctrl + r
-    delete localStorage.body_contents;
+    delete localStorage[location.pathname];
     location.reload(true);
     event.preventDefault();
   });
