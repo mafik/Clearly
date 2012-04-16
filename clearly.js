@@ -809,35 +809,84 @@ $Clearly.smartNew = function() {
   
 })();
 
+/**
+ * Elementy grupujące:
+ *  - section
+ *  - ul / ol
+ * 
+ * Elementy tekstowe:
+ *  (dozwolone w section i w body)
+ *  - p
+ *  - pre, blockquote, h1-h6
+ *  - li (dozwolone TYLKO w ul/ol)
+ * 
+ * Pozostałe:
+ *  - hr
+ * 
+ * Ruch góra / dół zawsze jest bezpieczny
+ * 
+ * Przy ruchu elementów prostych:
+ *  - wchodzenie _do_
+ *  - wychodzenie _z_
+ * 
+ * Elementy grupujące: dozwolone wchodzenie do sekcji ###
+ * +Elementy grupujące: wychodzenie zawsze dozwolone
+ * 
+ * +Proste elementy tekstowe: wychodzenie jest zawsze bezpieczne.
+ * +Proste elementy tekstowe: wchodzenie do ul/ol ??? ###
+ * 
+ * +Elementy list: wchodzenie jest niemożliwe (budowa elementu je wyklucza).
+ * +Elementy list: wychodzenie powoduje konwersje do p ###
+ */
+
 (function() {
   $Clearly.swap = new $Clearly.Mode('swap');
   
+  var swap = function(forward, inside) {
+	var a = $Clearly.active, b, s = $Clearly.selector;
+	
+	b = forward ? a.next(s) : a.prev(s);
+	
+	if(inside) {
+	  if(b.length === 0) { // Stepping out
+	    b = a.parent(s);
+	    if(a.is('li')) {
+	      $Clearly.changeTag("<p></p>");
+	      a = $Clearly.active;
+	    }
+	  } else if(b.is('section')) { // Entering section
+
+	    forward ?
+	      b.prepend(a) :
+	      b.append(a);
+
+	    return;
+
+	  } else if(b.is('ul, ol')) { // Entering lists
+
+	    if(a.is('p')) {
+	      forward ?
+		b.prepend(a) :
+		b.append(a);
+	      $Clearly.changeTag("<li></li>");
+	      return;
+	    }
+
+	  }
+	}
+
+	forward ?
+	  b.after(a) :
+	  b.before(a);
+	
+      };
+  
   $Clearly.swap.down = function(inside) {
-    var a = $Clearly.active, b, s = $Clearly.selector;
-    if(inside) {
-      b = a.next(s);
-      if(b.length) {
-        b.prepend(a);
-      } else {
-        a.parent(s).after(a);
-      }
-    } else {
-      a.next(s).after(a);
-    }
+    swap(true, inside);
   };
 
   $Clearly.swap.up = function(inside) {
-    var a = $Clearly.active, b, s = $Clearly.selector;
-    if(inside) {
-      b = a.prev(s);
-      if(b.length) {
-        b.append(a);
-      } else {
-        a.parent(s).before(a);
-      }
-    } else {
-      a.prev(s).before(a);
-    }
+    swap(false, inside);
   };
   
   $Clearly.nav.bind({shift:true, code:'38'}, function(event) {
