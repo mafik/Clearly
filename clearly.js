@@ -459,10 +459,15 @@ $Clearly.smartNew = function() {
         
   });
   
-  $('.active').live('click', function() {
-    if($Clearly.on.edit) return true;
+  $('.active').live('click', function(event) {
+
+    if($Clearly.on.edit) return;
+    
+    if(event && event.target && event.target.tagName && event.target.tagName == 'A') return;
+    
+    event.preventDefault();
+
     $Clearly.edit.start();
-    return false;
   });
 })();
 
@@ -772,10 +777,16 @@ $Clearly.smartNew = function() {
     event.preventDefault();
   });
   
-  $($Clearly.selector).live('click', function() {
-    if($(this).is('.active')) return false;
+  $($Clearly.selector).live('click', function(event) {
+
+    if(event && event.target && event.target.tagName && event.target.tagName == 'A') return;
+    
+    event.preventDefault();
+
+    if($(this).is('.active')) return;
+
     $(this).activate();
-    return false;
+
   });
   
 })();
