@@ -189,25 +189,25 @@ hr.active {
   color: #924332;
 }
 .todo:before {
-  content: 'TODO:';
+  content: 'TODO: ';
 }
 .cancelled {
   color: #c1c167;
 }
 .cancelled:before {
-  content: 'CANCELLED:';
+  content: 'CANCELLED: ';
 }
 .done {
   color: #74a44f;
 }
 .done:before {
-  content: 'DONE:';
+  content: 'DONE: ';
 }
 .working {
   color: #e43847;
 }
 .working:before {
-  content: 'WORKING ON:';
+  content: 'WORKING ON: ';
 }
 .todo:before, .cancelled:before, .done:before, .working:before {
   font-family: 'Ubuntu Mono', sans-serif;

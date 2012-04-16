@@ -909,14 +909,18 @@ $Clearly.smartNew = function() {
     }
   };
   
-  $Clearly.nav.bind({ ctrl:false
-                 , alt:false
-                 , meta:false
-                 , code:'9'}, function(event) { // [shift] tab
-    $Clearly.todo.toggle(!event.shiftKey);
-    $Clearly.save();
-    event.preventDefault();
-  });
+  var tab_handler = function(event) {
+	$Clearly.todo.toggle(!event.shiftKey);
+	$Clearly.save();
+	event.preventDefault();
+      };
+  
+  var tab_keydesc = { ctrl:false,
+		      alt:false,
+		      meta:false,
+		      code:'9' };
+  
+  $Clearly.todo.bind(tab_keydesc, tab_handler);
   
 })();
 
