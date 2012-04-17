@@ -38,11 +38,11 @@ section, p, h1, h2, h3, h4, h5, h6, ul, ol, pre, blockquote {
   border-radius: 10px;
   padding: 0 0 0 10px;
   margin: 10px 0;
-  -webkit-transition: .2s all;
-  -moz-transition: .2s all;
-  -ms-transition: .2s all;
-  -o-transition: .2s all;
-  transition: .2s all;
+  -webkit-transition: all .2s;
+  -moz-transition: all .2s;
+  -ms-transition: all .2s;
+  -o-transition: all .2s;
+  transition: all .2s;
   min-height: 1em;
 }
 section {
@@ -132,6 +132,10 @@ ul, ol, p {
   line-height: 1.5em;
   /* max-width: 40em; */
   min-height: 1.5em;
+  padding-right: 7px;
+}
+ul.active, ol.active, p.active {
+    padding-right: 0px;
 }
 blockquote  {
   font-style: italic;

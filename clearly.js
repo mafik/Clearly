@@ -105,8 +105,7 @@ $Clearly.save = function() {
 
 $Clearly.load = function() {
   if(!localStorage || !getSelection) {
-    console.warn('Your browser is killing Clearly. Trace this message if you want to know why.');
-    console.info('If you want to use Clearly without interruptions switch to HTML5 compatible browser.');
+    console.warn('localStorage and getSelection not found. Clearly will clearly fail.');
   }
   if(localStorage[location.pathname]) {
     $('body').html(localStorage[location.pathname]);
@@ -114,6 +113,10 @@ $Clearly.load = function() {
   } else {
     $($Clearly.selector).first().activate();
   }
+  
+  //setTimeout('window.scroll(0, $Clearly.active.offset().top - 10);', 500);
+  window.scroll(0, $Clearly.active.offset().top - 10);
+
   document.addEventListener('keydown', $Clearly.keydown);
 };
 
@@ -198,8 +201,9 @@ $Clearly.deleteActive = function(saveToKillRing) {
 
 (function() {
   var scrollFunction = function(pos) {
-    $('html, body').animate({ scrollTop:pos }, {duration: 200, queue: false});
-  };
+	//console.log("scroll to", pos);
+	$('html, body').animate({ scrollTop:pos }, {duration: 200, queue: false});
+      };
   $.fn.scrollShow = function() {
     if(this.length > 0) {
       var docViewTop = $(window).scrollTop();
@@ -211,7 +215,13 @@ $Clearly.deleteActive = function(saveToKillRing) {
                      + parseInt(this.css('margin-bottom'))
                      + parseInt(this.css('margin-top'));
       var elemBottom = elemTop
-                     + elemHeigth;
+            + elemHeigth;
+      
+      //console.log("docViewTop", docViewTop);
+      //console.log("docViewHeight", docViewHeight);
+      //console.log("docViewBottom", docViewBottom);
+      //console.log("elemTop", elemTop);
+      //console.log("elemBottom", elemBottom);
 
       if(docViewHeight > elemHeigth) {
         if(elemTop < docViewTop) {
@@ -463,7 +473,8 @@ $Clearly.smartNew = function() {
 
     if($Clearly.on.edit) return;
     
-    if(event && event.target && event.target.tagName && event.target.tagName == 'A') return;
+    if($(event.target).is('a')) return;
+    if($(event.target).is($Clearly.selector) && (event.target !== this)) return;
     
     event.preventDefault();
 
@@ -714,16 +725,30 @@ $Clearly.smartNew = function() {
   });
   
   $Clearly.nav.bind({ctrl:true, code:keys.r}, function(event) { // Ctrl + r
+    
+    $Clearly.save();
+    
+    var backup_name = location.pathname + '~',
+	current_name = location.pathname;
 
-    if(event.shiftKey) delete localStorage[location.pathname + '~'];
-
-    if(localStorage[location.pathname + '~']) {
-      localStorage[location.pathname] = localStorage[location.pathname + '~'];
+    var backup  = localStorage.getItem(backup_name),
+	current = localStorage.getItem(current_name);
+    
+    if(event.shiftKey) {
+      localStorage.removeItem(backup_name);
+      backup = null;
     } else {
-      delete localStorage[location.pathname];
+      localStorage.setItem(backup_name, current);      
     }
 
-    location.reload(true);
+    if(backup) {
+      localStorage.setItem(current_name, backup);
+    } else {
+      localStorage.removeItem(current_name);
+    }
+
+    $Clearly.load();
+
     event.preventDefault();
 
   });
@@ -750,21 +775,21 @@ $Clearly.smartNew = function() {
     event.preventDefault();
   });
   
-  $Clearly.nav.bind({shift:true, code:'35'}, function(event) {
+  $Clearly.nav.bind({ctrl:true, code:'35'}, function(event) {
     $('body').children($Clearly.selector).last().activate().scrollShow();
     event.preventDefault();
   });
   
-  $Clearly.nav.bind({shift:true, code:'36'}, function(event) {
+  $Clearly.nav.bind({ctrl:true, code:'36'}, function(event) {
     $('body').children($Clearly.selector).first().activate().scrollShow();
     event.preventDefault();
   });
-  $Clearly.nav.bind({shift:false, code:'35'}, function(event) {
+  $Clearly.nav.bind({ctrl:false, code:'35'}, function(event) {
     $Clearly.active.siblings($Clearly.selector).andSelf().last().activate().scrollShow();
     event.preventDefault();
   });
   
-  $Clearly.nav.bind({shift:false, code:'36'}, function(event) {
+  $Clearly.nav.bind({ctrl:false, code:'36'}, function(event) {
     $Clearly.active.siblings($Clearly.selector).andSelf().first().activate().scrollShow();
     event.preventDefault();
   });
@@ -797,7 +822,8 @@ $Clearly.smartNew = function() {
   
   $($Clearly.selector).live('click', function(event) {
 
-    if(event && event.target && event.target.tagName && event.target.tagName == 'A') return;
+    if($(event.target).is('a')) return;
+    if($(event.target).is($Clearly.selector) && (event.target !== this)) return;
     
     event.preventDefault();
 
