@@ -823,11 +823,12 @@ $Clearly.smartNew = function() {
   $($Clearly.selector).live('click', function(event) {
 
     if($(event.target).is('a')) return;
-    if($(event.target).is($Clearly.selector) && (event.target !== this)) return;
     
-    event.preventDefault();
+    if($(event.target).is($Clearly.selector) && (event.target !== this)) return;
 
     if($(this).is('.active')) return;
+    
+    event.stopPropagation();
 
     $(this).activate();
 
