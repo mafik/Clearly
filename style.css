@@ -128,15 +128,6 @@ p.active:after {
     color: #d8d8d0;
 }
 
-ul, ol, p {
-  line-height: 1.5em;
-  /* max-width: 40em; */
-  min-height: 1.5em;
-  padding-right: 7px;
-}
-ul.active, ol.active, p.active {
-    padding-right: 0px;
-}
 blockquote  {
   font-style: italic;
 }
@@ -152,16 +143,24 @@ pre {
   padding-top: .25em;
   padding-bottom: .25em;
 }
-ul, ol {
-    padding-left: 32px;
-}
 pre, code { 
   font-family: 'Ubuntu Mono', sans-serif;
   font-style: normal;
   font-size: .9em;
 }
-dt { font-style: italic; }
 
+ul, ol, p {
+  line-height: 1.5em;
+  /* max-width: 40em; */
+  min-height: 1.5em;
+  padding-right: 7px;
+}
+ul.active, ol.active, p.active {
+    padding-right: 0px;
+}
+ul, ol {
+    padding-left: 32px;
+}
 ul > li {
   display: list-item;
   list-style-position: outside;
@@ -188,6 +187,10 @@ hr {
 hr.active {
   border-left: none;
   border-color: #4a4c3b;
+}
+
+table {
+  margin: .5em;
 }
 .todo {
   color: #924332;
