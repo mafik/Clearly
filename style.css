@@ -55,8 +55,8 @@ section {
 .active {
   border-left: 7px solid #4a4c3b;
 }
-.active[contenteditable=true] {
-  border-color: red;
+[contenteditable=true] {
+  border-color: red !important;
 }
 .compact {
   max-height: 8em;

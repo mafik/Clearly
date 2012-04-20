@@ -4,6 +4,7 @@
  */
 
 $Clearly = { selector : 'h1, h2, h3, h4, h5, h6, section, p, blockquote, ul, ol, pre, hr, li',
+	     inhibitSelector : 'a, button, input',
              active : undefined,
              killring : [],
              activity : [],
@@ -468,18 +469,7 @@ $Clearly.smartNew = function() {
     event.preventDefault();
         
   });
-  
-  $('.active').live('click', function(event) {
 
-    if($Clearly.on.edit) return;
-    
-    if($(event.target).is('a')) return;
-    if($(event.target).is($Clearly.selector) && (event.target !== this)) return;
-    
-    event.preventDefault();
-
-    $Clearly.edit.start();
-  });
 })();
 
 // Navigator
@@ -825,51 +815,36 @@ $Clearly.smartNew = function() {
     event.preventDefault();
   });
   
-  $($Clearly.selector).live('click', function(event) {
-
-    if($(event.target).is('a')) return;
-    
-    if($(event.target).is($Clearly.selector) && (event.target !== this)) return;
-
-    if($(this).is('.active')) return;
-    
-    event.stopPropagation();
-
-    $(this).activate();
-
-  });
-  
 })();
 
-/**
- * Elementy grupujące:
- *  - section
- *  - ul / ol
- * 
- * Elementy tekstowe:
- *  (dozwolone w section i w body)
- *  - p
- *  - pre, blockquote, h1-h6
- *  - li (dozwolone TYLKO w ul/ol)
- * 
- * Pozostałe:
- *  - hr
- * 
- * Ruch góra / dół zawsze jest bezpieczny
- * 
- * Przy ruchu elementów prostych:
- *  - wchodzenie _do_
- *  - wychodzenie _z_
- * 
- * Elementy grupujące: dozwolone wchodzenie do sekcji ###
- * +Elementy grupujące: wychodzenie zawsze dozwolone
- * 
- * +Proste elementy tekstowe: wychodzenie jest zawsze bezpieczne.
- * +Proste elementy tekstowe: wchodzenie do ul/ol ??? ###
- * 
- * +Elementy list: wchodzenie jest niemożliwe (budowa elementu je wyklucza).
- * +Elementy list: wychodzenie powoduje konwersje do p ###
- */
+// # Click handling
+$(function() {
+
+  $(document).on('click', $Clearly.selector, function(event) {
+
+    // 1. Click inside edited element -> move the cursor
+    if($(this).closest("[contenteditable=true]").length) {
+      return false;
+    }
+
+    // 2. Clicked on clickable element (link/buttor) -> make default action
+    if($(event.target).is($Clearly.inhibitSelector)) {
+      event.stopPropagation();
+      return true;
+    }
+    
+    // 3. Clicked inside active element -> turn on edit mode
+    if($(this).is('.active')) {
+      $Clearly.edit.start();
+      return false;
+    }
+    
+    // 4. Otherwise -> activate this element
+    $(this).activate();
+    return false;
+  });
+  
+});
 
 (function() {
   $Clearly.swap = new $Clearly.Mode('swap');
