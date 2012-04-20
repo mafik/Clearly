@@ -18,7 +18,7 @@
     <h1>Clearly</h1>
     <section>
     <p><span style="font-family:Lobster">Clearly</span> is a <em>programmable structured text editor</em> implemented as a JavaScript library. If you ever hacked in JavaScript, you can go and fork its <a href="https://github.com/mafik/Clearly#readme">GitHub repository</a> (yay - it's open-source!). Of course you don't need any programming experience to use it. This tutorial will explain you everything you need to know :)</p>
-    <p>First of all - you need to know where are your documents going when you edit document. The answer is: <em>nowhere</em>. They are saved inside your browser in area accessible only to script from <code>clearly.pl</code>. They are accessible even if the <code>clearly.pl</code> is down and all of your documents can be easily exported <small>(specialized export tools coming!)</small>. It means that, despite using internet browser, all your data is saved on your computer.</p>
+    <p>First of all - you need to know where are your documents going when you edit document. The answer is: <em>nowhere</em>. They are saved inside your browser in area accessible only to script from <code>clearly.pl</code>. They are accessible even if the <code>clearly.pl</code> is down and all of your documents can be easily exported (specialized export tools coming!). It means that, despite using internet browser, all your data is saved on your computer.</p>
     <p>Second thing is - stop worrying about saving the document. All the changes you make are saved instantly after a key has been pressed. Whole document is stored in your browser, remember? If you want to make some major changes you can save your document in a backup (<code>[Ctrl + s]</code>) and compare two versions later (<code>[Ctrl + r]</code>) ... Backups and other functions will be covered later in the tutorial.</p>
     <p>You can create as many documents as you want. All you need to do is to go to <code>clearly.pl/&lt;document name&gt;</code> and new document will be created. Be careful with document names - if you loose them, the document might become inaccessible. Also even slight change in document name results in loading different documents. This can be useful - for example if you need a place to store some secrets&hellip;</p>
     <p>Document in <span style="font-family:Lobster">Clearly</span> is <em>structured</em> - every block of text is wrapped inside a
@@ -81,7 +81,7 @@
     </section>
 
     <section>
-      <h2><samp style="font-weight:bold;">TODO</samp> Lists</h2>
+      <h2>TODO Lists</h2>
       <p><span style="font-family:Lobster">Clearly</span> allows you to store and manage multiple task lists by annotating elements with <em>task states</em> (todo, cancelled, done, etc.).</p>
       <p>Press <code>[Tab]</code> to change task state of the active element.</p>
       <p>You can press it a few times - it cycles all possible states.</p>
@@ -137,6 +137,10 @@
 	<tr><td><code>[Ctrl + s]</code></td><td>backup current document</td></tr>
 	<tr><td><code>[Ctrl + r]</code></td><td>restore backed up document (swapping with current)</td></tr>
 	<tr><td><code>[Ctrl + Shift + r]</code></td><td>revent document & remove backup</td></tr>
+	<tr><td><code>[Delete]</code></td><td>removes active element from the page and puts it at the end of the killring</td></tr>
+	<tr><td><code>[Shift + Delete]</code></td><td>removes active element from the page</td></tr>
+	<tr><td><code>[Insert]</code></td><td>takes the last element from the killring and puts it after active element</td></tr>
+	<tr><td><code>[Shift + Insert]</code></td><td>takes the last element from the killring and puts it <em>before</em> active element</td></tr>
       </table>
       </section>
       <h3>Element Types</h3>
