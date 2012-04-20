@@ -307,7 +307,7 @@ $Clearly.smartNew = function() {
       a.contents().not('li').wrap("<li></li>");
       a.find('div').children().unwrap();
       a.textNodes().wrap("<li></li>");
-    } else if(a.is('blockquote')) {
+    } else {
       var c = a.contents();
       while(c.length) {
         if(c.last().is('br')) {
@@ -350,33 +350,37 @@ $Clearly.smartNew = function() {
   
   $Clearly.edit.bind({ shift:false, code:'13' }, function(event) {
     
-    if($Clearly.active.is('p, li, blockquote')) {
+    if($Clearly.active.is('p, li, blockquote, h1, h2, h3, h4, h5, h6')) {
       var sel = window.getSelection();
       var range = sel.getRangeAt(0);
-      if(sel.isCollapsed) {
+      if(sel.isCollapsed && $Clearly.active.contents().length) {
         range.setEndAfter($Clearly.active.contents().last()[0]);
       }
       var fragment = $(range.extractContents());
+
       var left_empty = ($Clearly.active.text().length == 0);
-      if(left_empty) $Clearly.active.text('dummy');
-      
-      $Clearly.edit.end();
-      
-      //console.log($Clearly.active.text(), $Clearly.active.text().length, left_empty, fragment);
-      $Clearly.smartNew();
-      
-      if(fragment) {
-        $Clearly.active.html(fragment);
-      }
-      if(left_empty) {
-        $Clearly.active.prev().text('').activate();
+      var right_empty = (fragment.text().length == 0);
+
+      if(left_empty && right_empty) {
+	// do nothing
+      } else if(left_empty) {
+	$Clearly.active.text('dummy');
+	$Clearly.edit.end();
+        $Clearly.smartNew();
+	$Clearly.active.html(fragment);
+	$Clearly.nav.up();
+	$Clearly.active.text('');
+	$Clearly.edit.start();
+      } else if(right_empty) {
+	$Clearly.edit.end();
+        $Clearly.smartNew();
+	$Clearly.edit.start();
       } else {
-        $Clearly.active.prev().removeAttr('contenteditable');
-        $Clearly.save();
-        $Clearly.active.attr('contenteditable', 'true').focus();
+	$Clearly.edit.end();
+        $Clearly.smartNew();
+	$Clearly.active.html(fragment);
+	$Clearly.edit.start();
       }
-      $Clearly.edit.start();
-      
       event.preventDefault();
       return false;
     }
@@ -827,7 +831,7 @@ $(function() {
       return false;
     }
 
-    // 2. Clicked on clickable element (link/buttor) -> make default action
+    // 2. Clicked on clickable element (link/button) -> make default action
     if($(event.target).is($Clearly.inhibitSelector)) {
       event.stopPropagation();
       return true;
