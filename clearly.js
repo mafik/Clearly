@@ -144,12 +144,7 @@ $.fn.activate = function(){
   }
   this.addClass('active');
   $Clearly.active = this;
-  var sel = window.getSelection();
-  var range = document.createRange();
-  range.selectNodeContents(this[0]);
-  range.collapse(true);
-  sel.removeAllRanges();
-  sel.addRange(range);
+  window.getSelection().removeAllRanges();
   return this;
 };
 
@@ -321,6 +316,7 @@ $Clearly.smartNew = function() {
     if(a.text().length == 0) {
       $Clearly.deleteActive(false);
     }
+    window.getSelection().removeAllRanges();
     delete $Clearly.on.edit;
     $Clearly.nav.start();
     return true;
@@ -328,6 +324,14 @@ $Clearly.smartNew = function() {
   
   function start () {
     var a = $Clearly.active;
+
+    var sel = window.getSelection();
+    var range = document.createRange();
+    range.selectNodeContents($Clearly.active[0]);
+    range.collapse(true);
+    sel.removeAllRanges();
+    sel.addRange(range);
+
     a.attr('contenteditable', 'true').focus();
     $Clearly.on.edit = $Clearly.edit;
     if($Clearly.on.nav) {
