@@ -3,6 +3,7 @@
   <head>
     <title>Clearly</title>
     <meta charset="utf-8" />
+    <link href='http://fonts.googleapis.com/css?family=Dosis:700,300|Inder&subset=latin-ext' rel='stylesheet' type='text/css'>
     <script src="/jquery.js"></script>
     <script src="/clearly.js"></script>
     <script>
@@ -17,60 +18,35 @@
   <body>
     <h1>Clearly</h1>
     <section>
-    <p><span style="font-family:Lobster">Clearly</span> is a <em>programmable structured text editor</em> implemented as a JavaScript library. If you ever hacked in JavaScript, you can go and fork its <a href="https://github.com/mafik/Clearly#readme">GitHub repository</a> (yay - it's open-source!). Of course you don't need any programming experience to use it. This tutorial will explain you everything you need to know :)</p>
+      <h2>Introduction</h2>
+    <p><span class="fancy">Clearly</span> is a <em>programmable structured text editor</em> implemented as a JavaScript library. If you ever hacked in JavaScript, you can go and fork its <a href="https://github.com/mafik/Clearly#readme">GitHub repository</a> (yay - it's open-source!). Of course you don't need any programming experience to use it. This tutorial will explain you everything you need to know :)</p>
     <p>First of all - you need to know where are your documents going when you edit document. The answer is: <em>nowhere</em>. They are saved inside your browser in area accessible only to script from <code>clearly.pl</code>. They are accessible even if the <code>clearly.pl</code> is down and all of your documents can be easily exported (specialized export tools coming!). It means that, despite using internet browser, all your data is saved on your computer.</p>
-    <p>Second thing is - stop worrying about saving the document. All the changes you make are saved instantly after a key has been pressed. Whole document is stored in your browser, remember? If you want to make some major changes you can save your document in a backup (<code>[Ctrl + s]</code>) and compare two versions later (<code>[Ctrl + r]</code>) ... Backups and other functions will be covered later in the tutorial.</p>
-    <p>You can create as many documents as you want. All you need to do is to go to <code>clearly.pl/&lt;document name&gt;</code> and new document will be created. Be careful with document names - if you loose them, the document might become inaccessible. Also even slight change in document name results in loading different documents. This can be useful - for example if you need a place to store some secrets&hellip;</p>
-    <p>Document in <span style="font-family:Lobster">Clearly</span> is <em>structured</em> - every block of text is wrapped inside a
-      paragraph. Paragraphs are grouped inside <em>sections</em>. They look like this:</p>
-    <section>
-      <p>This is a paragraph inside a section.</p>
-      <p>Sections can be nested:</p>
-      <section>
-	<p>Besides sections, the content can be grouped in <em>lists</em>:</p>
-	<ul>
-	  <li>A</li>
-	  <li>B</li>
-	  <li>C</li>
-	</ul>
-	<p>&hellip; which can be also ordered:</p>
-	<ol>
-	  <li>A</li>
-	  <li>B</li>
-	  <li>C</li>
-	</ol>
-      </section>
-    </section>
-    <p>You can also use horizontal lines:</p>
-    <hr>
-    <blockquote>Quoted text</blockquote>
-    <pre>Fixed-width text</pre>
-    <h3>Headers</h3>
-    <h5>&hellip; at various levels.</h5>
-    <p class=done>To make task-tracking easier, every element can also be marked with <em>todo states</em> (<em>tip:</em> use <code>[Tab]</code> to cycle through them).</p>
+    <p>Second thing is - stop worrying about saving the document. All the changes you make are saved instantly after a key has been pressed. Whole document is stored in your browser, remember? If you want to make some major changes you can save your document in a backup (<code>[Ctrl + s]</code>) and compare two versions later (<code>[Ctrl + r]</code>) ... We'll get back to backups later on.</p>
+    <p>You can create as many documents as you want. All you need to do is to go to <code>clearly.pl/&lt;document name&gt;</code> and new document will be created. You can use any names you want (even prefixing document name with a path) but be careful with document names - if you loose them, the document might become inaccessible. Also even slight change in document name results in loading different documents. This can be useful - for example if you need a place to store some secrets&hellip;</p>
+    <p>Document in <span class="fancy">Clearly</span> is <em>structured</em> - every block of text is wrapped inside a
+      paragraph. Paragraphs are grouped inside <em>sections</em>. In fact this paragraph is placed inside a section. You will soon get hang of structure manipulation - it is powerfull and convenient tool.</p>
     </section>
     <section>
       <h2>Navigation</h2>
-      <p>The whole editor is actually a webpage. You can scroll it with scrollbar and mouse
-	wheel.</p>
-      <p>One HTML element is always selected - its left border is slightly
-	thicker and darker. Text elements, while selected, have small visual
-	hints at the end indicating, what type of element is this.</p>
+      <p>The document is actually o tree (mathematical tree of course) of HTML elements - sections, headers, paragraphs and a few others.
+	To make work easier one element is always active - its left border is slightly
+	thicker and darker. Some elements, while selected, have small visual
+	clues at the end indicating, what type of element is this.</p>
       <p>When you click on an element it gets activated. Watch out not to 
 	click it twice though - it would start <code>edit mode</code>. You can leave edit
 	mode with <code>[Escape]</code> or by clicking outside currently edited element.
       <p>You can <em>use arrows to navigate</em> (<code>[&larr;] [&rarr;] [&uarr;] [&darr;]</code>) between next/previous elements
-	and to ascend/descent in their hierarchy. This way of navigating through text is called <em>tree navigation</em>.</p>
-      <p>You navigate inside the webpage as it was a tree. Hold down 
-	<code>[Ctrl]</code> and press <code>[&uarr;]</code>/<code>[&darr;]</code> to walk across elements at 
-	different levels as if they were placed one after another. This is
+	and to ascend/descent in their hierarchy. This way of navigating through text is called <em>tree navigation</em>. Try it now. This is main way of browsing big documents and you will very quickly start to use it intuitively.</p>
+      <p>If you know how to navigate inside the webpage as it was a tree try holding down 
+	<code>[Ctrl]</code> and press <code>[&uarr;]</code>/<code>[&darr;]</code>. This way you navigate i a way very similar to tree navigation but you can walk across elements at 
+	different nesting levels. Just as if they were placed one after another. This is why it is
 	called <em>list navigation</em>.</p>
       <p><code>[Home]</code> and <code>[End]</code> keys will move you to the first and last element in the current section. Holding down <code>[Ctrl]</code> will cause you to move to start and end of the document.</p>
     </section>
     <section>
       <h2>Structure Manipulation</h2>
-      <p>Select an element and press one of the digit keys from <code>[1]</code> to <code>[6]</code>. You can create headers this way.</p>
-      <p>If you want to turn a header back to a paragraph, press the <code>[p]</code> key while the header is selected.</p>
+      <p>Various elements have keys associated to them. When you press an element key, the active element is <em>converted</em> to that particular element. Try it: select an element and press one of the digit keys from <code>[1]</code> to <code>[6]</code>. This way you can create headers of different sizes.</p>
+      <p>Now turn a header back into a paragraph: press the <code>[p]</code> key while the header is selected.</p>
       <p>Press <code>[Delete]</code> with an element selected to remove it from the page. Elements removed this way are not lost - they are put into <em>killring</em> instead.</p>
       <p>You can retrieve an element from killring and paste it <em>after</em> current element by pressing <code>[Insert]</code>. Press <code>[Shift + Insert]</code> to add it before active element.</p>
       <p>If you press <code>[Ctrl + \]</code> you will insert new horizontal rule after selected element. Hold <code>Shift</code> to add it before instead.</p>
@@ -82,7 +58,7 @@
 
     <section>
       <h2>TODO Lists</h2>
-      <p><span style="font-family:Lobster">Clearly</span> allows you to store and manage multiple task lists by annotating elements with <em>task states</em> (todo, cancelled, done, etc.).</p>
+      <p><span class="fancy">Clearly</span> allows you to store and manage multiple task lists by annotating elements with <em>task states</em> (todo, cancelled, done, etc.).</p>
       <p>Press <code>[Tab]</code> to change task state of the active element.</p>
       <p>You can press it a few times - it cycles all possible states.</p>
       <p><code>[Shift + Tab]</code> cycles todo states backwards.</p>
@@ -91,7 +67,7 @@
 
     <section>
       <h2>Backups & Restoring</h2>
-      <p>Unfortunately, <span style="font-family:Lobster">Clearly</span> doesn't yet support undo mechanism for changes done in navigation mode (shuffling and removing elements). To stay safe you should use <em>backups</em>.</p>
+      <p>Unfortunately, <span class="fancy">Clearly</span> doesn't yet support undo mechanism for changes done in navigation mode (shuffling and removing elements). To stay safe you should use <em>backups</em>.</p>
       <p><code>[Ctrl + s]</code> creates new backup for current page. Backup is created as a new page with <code>~</code> (tilde) added to path (backup for <code>clearly.pl/tutorial/</code> is saved at <code>clearly.pl/tutorial/~</code>).</p>
       <p><code>[Ctrl + r]</code> <em>reverts to backup</em>. This command <em>swaps</em> current document with a backup. If no backup is avaiable - the document is reverted to its original state (this way you can for example revert changes made in this tutorial).</p>
       <p><code>[Ctrl + Shift + r]</code> removes backup and saved page. Reverts document to its original state. Dangerous.</p>

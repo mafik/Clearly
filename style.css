@@ -23,9 +23,11 @@
   src: local('Ubuntu Mono'), local('UbuntuMono-Regular'), url('UbuntuMono.ttf') format('truetype');
 }
 html {
-  color: #3a4c4b;
+  color: #5a6c6b;
   font-size: 16px;
   font-family: 'Sorts Mill Goudy', serif;
+  /*font-family: 'Inder', sans-serif;*/
+  font-family: 'Droid Sans', sans-serif;
   text-rendering: optimizeLegibility;
   -moz-font-feature-settings: "liga=1";
   -ms-font-feature-settings: "liga" 1;
@@ -34,10 +36,13 @@ html {
   -moz-font-feature-settings: "frac=1";
   -ms-font-feature-settings: "frac" 1;
 }
+body {
+    margin: 1em;
+}
 section, p, h1, h2, h3, h4, h5, h6, ul, ol, pre, blockquote {
   border-radius: 10px;
-  padding: 0 0 0 10px;
-  margin: 10px 0;
+  padding: 0 0 0 5px;
+  margin: 10px 0 10px 10px;
   -webkit-transition: all .2s;
   -moz-transition: all .2s;
   -ms-transition: all .2s;
@@ -48,12 +53,15 @@ section, p, h1, h2, h3, h4, h5, h6, ul, ol, pre, blockquote {
 section {
   border-left: 5px solid #d8d8d0;
   min-height: 10px;
-  border-top: 1px dashed #d8d8d0;
+  
+  /*border-top: 1px dashed #d8d8d0;
   border-bottom: 1px dashed #d8d8d0;
-  border-right: 1px dashed #d8d8d0;
+  border-right: 1px dashed #d8d8d0;*/
 }
 .active {
   border-left: 7px solid #4a4c3b;
+  padding-left: 15px;
+  color: #1a2c2b;
 }
 [contenteditable=true] {
   border-color: red !important;
@@ -75,16 +83,18 @@ section {
   line-height: 1em;
   min-height: 1px;
 }
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, .fancy {
   font-family: 'Lobster', serif;
+  font-family: 'Dosis', sans-serif;
   font-weight: normal;
 }
-h1 { font-size: 5em; }
-h2 { font-size: 3em; }
+.fancy { color: #f07c39; font-weight: bold; font-size: 1.2em;}
+h1 { font-size: 5em; color: #f07c39 !important; }
+h2 { font-size: 3em; color: #efbb4b !important; }
 h3 { font-size: 2em; }
 h4 { padding: 0 16px; font-size: 1.5em; }
-a { color: #983a5e; }
-
+a { color: #0098a4; }
+em { font-style: normal; font-weight: bold; }
 /*
 p { text-indent: 1em; }
 h1 + p, h2 + p, h3 + p, h4 + p, h5 + p, h6 + p, p:first-child { text-indent: 0; }
@@ -121,7 +131,7 @@ li.active:after {
     content: ' ❦';
 }
 p.active:after {
-    content: ' ❡';
+    content: ' ¶';
 }
 
 .active[contenteditable=true]:after, .active[contenteditable=true]:before {
@@ -144,14 +154,13 @@ pre {
   padding-bottom: .25em;
 }
 pre, code { 
-  font-family: 'Ubuntu Mono', sans-serif;
+  font-family: 'Droid Sans Mono', sans-serif;
   font-style: normal;
-  font-size: .9em;
 }
 
 ul, ol, p {
   line-height: 1.5em;
-  /* max-width: 40em; */
+  max-width: 40em;
   min-height: 1.5em;
   padding-right: 7px;
 }
