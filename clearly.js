@@ -746,8 +746,13 @@ $Clearly.smartNew = function() {
     } else {
       localStorage.removeItem(current_name);
     }
+    
 
-    $Clearly.load();
+    if(event.shiftKey) {
+      window.location.reload();
+    } else {
+      $Clearly.load();
+    }
 
     event.preventDefault();
 
