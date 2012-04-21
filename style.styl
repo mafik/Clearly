@@ -1,0 +1,134 @@
+experimental(prop, args)
+  -webkit-{prop} args
+  -moz-{prop} args
+  -ms-{prop} args
+  -o-{prop} args
+  {prop} args
+
+transition()
+  experimental('transition', arguments)
+
+font-feature-settings()
+  experimental('font-feature-settings', arguments)
+
+body
+  margin 1em
+
+html
+  font 16px Ubuntu, sans-serif
+  color #556
+  background #eee
+  text-rendering optimizeLegibility
+  font-feature-settings "liga=1"
+  font-feature-settings "kern=1"
+  font-feature-settings "frac=1"
+
+.active
+  border-color #000
+  background #fff
+  margin-left 10px
+  color #223
+
+[contenteditable=true]
+  border-color red !important
+
+.compact
+  max-height 8em
+  overflow hidden
+  background #ffe
+  font-size 10px
+  *
+    font-size inherit !important
+
+section, p, ul, ol, blockquote, pre, h1, h2, h3, h4, h5, h6, li, hr
+  transition margin-left .3s, border-color .3s, background .3s, font-size .3s
+
+section, p, ul, ol, blockquote, pre, h1, h2, h3, h4, h5, h6
+  margin .4em 0
+  padding .1em
+  transition margin-left .3s, border-left .3s, background .3s, font-size .3s
+  min-height 1.2em
+
+section
+  padding-left .8em
+  border-left 5px solid #ccc
+
+hr
+  border 2.5px solid #ccc
+  margin 0
+
+p, ul, ol, blockquote, pre
+  padding .5em
+  min-height 1.5em
+
+p, ul, ol, blockquote
+  max-width 40em
+  line-height 1.5em
+
+em
+  font-style inherit
+  font-weight bold
+
+a
+  color #0098c4
+
+table
+  margin .5em
+
+code, pre
+  font-family "Ubuntu Mono", courier;
+
+h1, h2, h3, h4, h5, h6, .fancy
+  font-family Dosis, sans-serif
+  font-weight normal
+
+h1, .fancy
+  color #f07c39 !important
+
+h1
+  font-size 5em
+
+h2
+  font-size 3em
+  color #efbb4b !important
+
+blockquote 
+  font-style italic
+
+blockquote:after
+  content ' ❞'
+
+blockquote:before
+  content '❝ '
+
+ol, ul
+  padding-left 2em
+
+
+.todo
+  color #924332
+
+.todo:before
+  content 'TODO: '
+
+.cancelled
+  color #c1c167
+
+.cancelled:before
+  content 'CANCELLED: '
+
+.done
+  color #74a44f
+
+.done:before
+  content 'DONE: '
+
+.working
+  color #e43847
+
+.working:before
+  content 'WORKING ON: '
+
+.todo:before, .cancelled:before, .done:before, .working:before
+  font-weight: bold;
+
