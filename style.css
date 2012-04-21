@@ -1,0 +1,184 @@
+body {
+  margin: 1em;
+}
+html {
+  font: 16px Ubuntu, sans-serif;
+  color: #556;
+  background: #eee;
+  text-rendering: optimizeLegibility;
+  -webkit-font-feature-settings: "liga=1";
+  -moz-font-feature-settings: "liga=1";
+  -ms-font-feature-settings: "liga=1";
+  -o-font-feature-settings: "liga=1";
+  font-feature-settings: "liga=1";
+  -webkit-font-feature-settings: "kern=1";
+  -moz-font-feature-settings: "kern=1";
+  -ms-font-feature-settings: "kern=1";
+  -o-font-feature-settings: "kern=1";
+  font-feature-settings: "kern=1";
+  -webkit-font-feature-settings: "frac=1";
+  -moz-font-feature-settings: "frac=1";
+  -ms-font-feature-settings: "frac=1";
+  -o-font-feature-settings: "frac=1";
+  font-feature-settings: "frac=1";
+}
+.active {
+  border-color: #000;
+  background: #fff;
+  margin-left: 10px;
+  color: #223;
+}
+[contenteditable=true] {
+  border-color: #f00 !important;
+}
+.compact {
+  max-height: 8em;
+  overflow: hidden;
+  background: #ffe;
+  font-size: 10px;
+}
+.compact * {
+  font-size: inherit !important;
+}
+section,
+p,
+ul,
+ol,
+blockquote,
+pre,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+hr {
+  -webkit-transition: margin-left 0.3s, border-color 0.3s, background 0.3s, font-size 0.3s;
+  -moz-transition: margin-left 0.3s, border-color 0.3s, background 0.3s, font-size 0.3s;
+  -ms-transition: margin-left 0.3s, border-color 0.3s, background 0.3s, font-size 0.3s;
+  -o-transition: margin-left 0.3s, border-color 0.3s, background 0.3s, font-size 0.3s;
+  transition: margin-left 0.3s, border-color 0.3s, background 0.3s, font-size 0.3s;
+}
+section,
+p,
+ul,
+ol,
+blockquote,
+pre,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0.4em 0;
+  padding: 0.1em;
+  -webkit-transition: margin-left 0.3s, border-left 0.3s, background 0.3s, font-size 0.3s;
+  -moz-transition: margin-left 0.3s, border-left 0.3s, background 0.3s, font-size 0.3s;
+  -ms-transition: margin-left 0.3s, border-left 0.3s, background 0.3s, font-size 0.3s;
+  -o-transition: margin-left 0.3s, border-left 0.3s, background 0.3s, font-size 0.3s;
+  transition: margin-left 0.3s, border-left 0.3s, background 0.3s, font-size 0.3s;
+  min-height: 1.2em;
+}
+section {
+  padding-left: 0.8em;
+  border-left: 5px solid #ccc;
+}
+hr {
+  border: 2.5px solid #ccc;
+  margin: 0;
+}
+p,
+ul,
+ol,
+blockquote,
+pre {
+  padding: 0.5em;
+  min-height: 1.5em;
+}
+p,
+ul,
+ol,
+blockquote {
+  max-width: 40em;
+  line-height: 1.5em;
+}
+em {
+  font-style: inherit;
+  font-weight: bold;
+}
+a {
+  color: #0098c4;
+}
+table {
+  margin: 0.5em;
+}
+code,
+pre {
+  font-family: "Ubuntu Mono", courier;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.fancy {
+  font-family: Dosis, sans-serif;
+  font-weight: normal;
+}
+h1,
+.fancy {
+  color: #f07c39 !important;
+}
+h1 {
+  font-size: 5em;
+}
+h2 {
+  font-size: 3em;
+  color: #efbb4b !important;
+}
+blockquote {
+  font-style: italic;
+}
+blockquote:after {
+  content: ' ❞';
+}
+blockquote:before {
+  content: '❝ ';
+}
+ol,
+ul {
+  padding-left: 2em;
+}
+.todo {
+  color: #924332;
+}
+.todo:before {
+  content: 'TODO: ';
+}
+.cancelled {
+  color: #c1c167;
+}
+.cancelled:before {
+  content: 'CANCELLED: ';
+}
+.done {
+  color: #74a44f;
+}
+.done:before {
+  content: 'DONE: ';
+}
+.working {
+  color: #e43847;
+}
+.working:before {
+  content: 'WORKING ON: ';
+}
+.todo:before,
+.cancelled:before,
+.done:before,
+.working:before {
+  font-weight: bold;
+}
