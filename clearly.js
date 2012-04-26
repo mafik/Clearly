@@ -785,7 +785,7 @@ $Clearly.smartNew = function() {
     } else {
       $Clearly.active.removeClass('compact');
     }
-    $Clearly.active.scrollShow(200);
+    setTimeout('$Clearly.active.scrollShow()', 300);
   };
 
   $Clearly.nav.down = function() {
