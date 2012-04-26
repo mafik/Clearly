@@ -11,6 +11,211 @@ $Clearly = { selector : 'h1, h2, h3, h4, h5, h6, section, p, blockquote, ul, ol,
              on : {},
              install : {} };
 
+$Clearly.Keys = {
+  8: "BACKSPACE",
+  9: "TAB",
+  13: "ENTER",
+  16: "SHIFT",
+  17: "CTRL",
+  18: "ALT",
+  19: "PAUSE/BREAK",
+  20: "CAPS LOCK",
+  27: "ESCAPE",
+  33: "PAGE UP",
+  34: "PAGE DOWN",
+  35: "END",
+  36: "HOME",
+  37: "LEFT ARROW",
+  38: "UP ARROW",
+  39: "RIGHT ARROW",
+  40: "DOWN ARROW",
+  45: "INSERT",
+  46: "DELETE",
+  48: "0",
+  49: "1",
+  50: "2",
+  51: "3",
+  52: "4",
+  53: "5",
+  54: "6",
+  55: "7",
+  56: "8",
+  57: "9",
+  65: "A",
+  66: "B",
+  67: "C",
+  68: "D",
+  69: "E",
+  70: "F",
+  71: "G",
+  72: "H",
+  73: "I",
+  74: "J",
+  75: "K",
+  76: "L",
+  77: "M",
+  78: "N",
+  79: "O",
+  80: "P",
+  81: "Q",
+  82: "R",
+  83: "S",
+  84: "T",
+  85: "U",
+  86: "V",
+  87: "W",
+  88: "X",
+  89: "Y",
+  90: "Z",
+  91: "LEFT WINDOW KEY",
+  92: "RIGHT WINDOW KEY",
+  93: "SELECT KEY",
+  96: "NUMPAD 0",
+  97: "NUMPAD 1",
+  98: "NUMPAD 2",
+  99: "NUMPAD 3",
+  100: "NUMPAD 4",
+  101: "NUMPAD 5",
+  102: "NUMPAD 6",
+  103: "NUMPAD 7",
+  104: "NUMPAD 8",
+  105: "NUMPAD 9",
+  106: "MULTIPLY",
+  107: "ADD",
+  109: "SUBTRACT",
+  110: "DECIMAL POINT",
+  111: "DIVIDE",
+  112: "F1",
+  113: "F2",
+  114: "F3",
+  115: "F4",
+  116: "F5",
+  117: "F6",
+  118: "F7",
+  119: "F8",
+  120: "F9",
+  121: "F10",
+  122: "F11",
+  123: "F12",
+  144: "NUM LOCK",
+  145: "SCROLL LOCK",
+
+  59: "SEMICOLON", // firefox
+  186: "SEMICOLON", // chrome
+
+  187: "EQUAL SIGN",
+  188: "COMMA",
+  189: "DASH",
+  190: "PERIOD",
+  191: "FORWARD SLASH",
+  192: "GRAVE ACCENT",
+  219: "OPEN BRACKET",
+  220: "BACKSLASH",
+  221: "CLOSE BRAKET",
+  222: "SINGLE QUOTE"
+};
+
+$Clearly.Keycodes = {
+  "BACKSPACE": [8],
+  "TAB": [9],
+  "ENTER": [13],
+  "SHIFT": [16],
+  "CTRL": [17],
+  "ALT": [18],
+  "PAUSE/BREAK": [19],
+  "CAPS LOCK": [20],
+  "ESCAPE": [27],
+  "PAGE UP": [33],
+  "PAGE DOWN": [34],
+  "END": [35],
+  "HOME": [36],
+  "LEFT ARROW": [37],
+  "UP ARROW": [38],
+  "RIGHT ARROW": [39],
+  "DOWN ARROW": [40],
+  "INSERT": [45],
+  "DELETE": [46],
+  "0": [48],
+  "1": [49],
+  "2": [50],
+  "3": [51],
+  "4": [52],
+  "5": [53],
+  "6": [54],
+  "7": [55],
+  "8": [56],
+  "9": [57],
+  "A": [65],
+  "B": [66],
+  "C": [67],
+  "D": [68],
+  "E": [69],
+  "F": [70],
+  "G": [71],
+  "H": [72],
+  "I": [73],
+  "J": [74],
+  "K": [75],
+  "L": [76],
+  "M": [77],
+  "N": [78],
+  "O": [79],
+  "P": [80],
+  "Q": [81],
+  "R": [82],
+  "S": [83],
+  "T": [84],
+  "U": [85],
+  "V": [86],
+  "W": [87],
+  "X": [88],
+  "Y": [89],
+  "Z": [90],
+  "LEFT WINDOW KEY": [91],
+  "RIGHT WINDOW KEY": [92],
+  "SELECT KEY": [93],
+  "NUMPAD 0": [96],
+  "NUMPAD 1": [97],
+  "NUMPAD 2": [98],
+  "NUMPAD 3": [99],
+  "NUMPAD 4": [100],
+  "NUMPAD 5": [101],
+  "NUMPAD 6": [102],
+  "NUMPAD 7": [103],
+  "NUMPAD 8": [104],
+  "NUMPAD 9": [105],
+  "MULTIPLY": [106],
+  "ADD": [107],
+  "SUBTRACT": [109],
+  "DECIMAL POINT": [110],
+  "DIVIDE": [111],
+  "F1": [112],
+  "F2": [113],
+  "F3": [114],
+  "F4": [115],
+  "F5": [116],
+  "F6": [117],
+  "F7": [118],
+  "F8": [119],
+  "F9": [120],
+  "F10": [121],
+  "F11": [122],
+  "F12": [123],
+  "NUM LOCK": [144],
+  "SCROLL LOCK": [145],
+  "SEMICOLON": [59,186], // firefox & chrome
+  "EQUAL SIGN": [187],
+  "COMMA": [188],
+  "DASH": [189],
+  "PERIOD": [190],
+  "FORWARD SLASH": [191],
+  "GRAVE ACCENT": [192],
+  "OPEN BRACKET": [219],
+  "BACKSLASH": [220],
+  "CLOSE BRAKET": [221],
+  "SINGLE QUOTE": [222]
+};
+
 $Clearly.Mode = function(name) { this.name = name; };
 $Clearly.Mode.prototype.bind = function(o, f) {
   var end = this, queue = ['ctrl', 'shift', 'meta', 'alt'];
@@ -74,8 +279,7 @@ $Clearly.keydown = function(event) {
 	       code : event.keyCode
 	     };
   
-  //console.log(JSON.stringify(data, null, '  '));
-  console.log(JSON.stringify(data));
+  //console.log(JSON.stringify(data));
   for(i in $Clearly.on) {
     end.push($Clearly.on[i]);
   }
@@ -115,9 +319,8 @@ $Clearly.load = function() {
     $($Clearly.selector).first().activate();
   }
   
-  //setTimeout('window.scroll(0, $Clearly.active.offset().top - 10);', 500);
-  window.scroll(0, $Clearly.active.offset().top - 10);
-
+  setTimeout('window.scroll(0, $Clearly.active.offset().top - parseInt(getComputedStyle($Clearly.active[0]).marginTop));', 500);
+  
   document.addEventListener('keydown', $Clearly.keydown);
 };
 
@@ -144,7 +347,6 @@ $.fn.activate = function(){
   }
   this.addClass('active');
   $Clearly.active = this;
-  window.getSelection().removeAllRanges();
   return this;
 };
 
@@ -229,6 +431,7 @@ $Clearly.deleteActive = function(saveToKillRing) {
         scrollFunction(elemTop);
       }
     }
+    return this;
   };
 })();
 
@@ -316,7 +519,7 @@ $Clearly.smartNew = function() {
     if(a.text().length == 0) {
       $Clearly.deleteActive(false);
     }
-    window.getSelection().removeAllRanges();
+    // window.getSelection().removeAllRanges();
     delete $Clearly.on.edit;
     $Clearly.nav.start();
     return true;
@@ -325,12 +528,60 @@ $Clearly.smartNew = function() {
   function start () {
     var a = $Clearly.active;
 
+    var ramax = document.createRange();
+    ramax.selectNodeContents(a[0]);
+    
+    var range, ri;
+    
+    /* *
+    var ans = [];
+    ans[-1] = "before";
+    ans[0] = "at";
+    ans[1] = "after";
+    /* */
+    
     var sel = window.getSelection();
-    var range = document.createRange();
-    range.selectNodeContents($Clearly.active[0]);
-    range.collapse(true);
-    sel.removeAllRanges();
-    sel.addRange(range);
+    for(ri=0; ri < sel.rangeCount; ++ri) {
+      range = sel.getRangeAt(ri);
+      
+      /* *
+      console.log("Start of selection is ",
+		  ans[range.compareBoundaryPoints(Range.START_TO_START, ramax)],
+		  "start of active");
+
+      console.log("Start of selection is ",
+		  ans[range.compareBoundaryPoints(Range.END_TO_START, ramax)],
+		  "end of active");
+
+      console.log("End of selection is ",
+		  ans[range.compareBoundaryPoints(Range.START_TO_END, ramax)],
+		  "start of active");
+
+      console.log("End of selection is ",
+		  ans[range.compareBoundaryPoints(Range.END_TO_END, ramax)],
+		  "end of active");
+      /* */
+
+      if(range.compareBoundaryPoints(Range.START_TO_START, ramax) == -1) {
+	range.setStart(ramax.startContainer, ramax.startOffset);
+	//console.log("Start -> Start");
+
+	if(range.compareBoundaryPoints(Range.START_TO_END, ramax) == -1) {
+	  range.setEnd(ramax.startContainer, ramax.startOffset);
+	  //console.log("End -> Start");
+	}
+      }
+
+      if(range.compareBoundaryPoints(Range.END_TO_END, ramax) == 1) {
+	range.setEnd(ramax.endContainer, ramax.endOffset);
+	//console.log("End -> End");
+
+	if(range.compareBoundaryPoints(Range.END_TO_START, ramax) == 1) {
+	  range.setStart(ramax.endContainer, ramax.endOffset);
+	  //console.log("Start -> End");
+	}
+      }
+    }
 
     a.attr('contenteditable', 'true').focus();
     $Clearly.on.edit = $Clearly.edit;
@@ -464,6 +715,47 @@ $Clearly.smartNew = function() {
     return false;
   });
   
+  var wrap_with = function(makeElem) {
+	
+	var sel = window.getSelection(), ri, range, elem, fragment;
+	for(ri=0; ri < sel.rangeCount; ++ri) {
+	  elem = makeElem();
+	  range = sel.getRangeAt(ri);
+	  try {
+
+	    range.surroundContents(elem);
+
+	  } catch (x) {
+
+	    fragment = range.extractContents();
+	    range.insertNode(elem);
+	    elem.appendChild(fragment);
+	    range.selectNode(elem);
+
+	  }
+	}
+      };
+  
+  bind('68', function(event) { // d -> <code>
+    
+    wrap_with(function() {
+      return document.createElement('code');
+    });
+    event.preventDefault();
+        
+  });
+  
+  bind('70', function(event) { // f -> <... class="fancy">
+    
+    wrap_with(function() {
+      var e = document.createElement('span');
+      e.className = 'fancy';
+      return e;
+    });
+    event.preventDefault();
+        
+  });
+  
   bind('109', function(event) { // -_
     
     document.execCommand('decreaseFontSize', false, null);
@@ -536,42 +828,62 @@ $Clearly.smartNew = function() {
     b.activate().scrollShow();
   };
   
-  // TODO: Everything below this comment is a mess & needs fixing.
+  var bind = function(keyname, conversionFunction, creationFunction) {
+    var codes = $Clearly.Keycodes[keyname];
+    var code = codes[0];
+    
+    for(var i=0; i<codes.length; ++i) {
+
+      code = codes[i];
+
+      if(conversionFunction) {
+	$Clearly.nav.bind({ctrl:false, code:code}, conversionFunction);
+      }
+
+      if(creationFunction) {
+	$Clearly.nav.bind({ctrl:true, code:code}, creationFunction);
+      }
+      
+    }
+  };
   
-  var keys = {
-	p: 80,
-	b: 66,
-	e: 69,
-	r: 82,
-	u: 85,
-	o: 79,
-	s: 83,
-	';': 186,
-	'\\': 220,
-	'1': 49, '2': 50, '3': 51, '4': 52, '5': 53, '6': 54
+  var makeTagCreator = function(tag) {
+	return function(event) {
+	  if(event.shiftKey) {
+            $Clearly.active.before(tag).prev().activate().scrollShow();
+	  } else {
+            $Clearly.active.after(tag).next().activate().scrollShow();
+	  }
+	  $Clearly.edit.start();
+	  event.preventDefault();
+	};
       };
   
-  function bind_tag_creation(code, tag) {
-    $Clearly.nav.bind({ctrl:true, code:code}, function(event) {
-      if(event.shiftKey) {
-        $Clearly.active.before(tag).prev().activate().scrollShow();
-      } else {
-        $Clearly.active.after(tag).next().activate().scrollShow();
-      }
-      $Clearly.edit.start();
-      event.preventDefault();
-    });
-  }
+  var makeNestedTagCreator = function(tags) {
+	return function(event) {
+	  if(event.shiftKey) {
+            $Clearly.active.before(tags).prev().scrollShow().children().first().activate();
+	  } else {
+            $Clearly.active.after(tags).next().scrollShow().children().first().activate();
+	  }
+	  $Clearly.edit.start();
+	  event.preventDefault();
+	};
+
+	var simple = makeTagCreator(tags);
+	return function(event) {
+	  simple();
+	  
+	};
+      };
   
-  function bind_tag_conversion(code, tag) {
-    $Clearly.nav.bind({ctrl:false, code:code}, function(event) {
+  var makeTagConverter = function(tag) {
+    return function(event) {
       $Clearly.changeTag(tag);
       $Clearly.save();
       event.preventDefault();
-    });
-  }
-  
-  // FIXME: serious cleaning needed
+    };
+  };
   
   // TODO: This function should be integrated with $Clearly.changeTag (possibly even into jquery)
   function change_tag(a, tag) {
@@ -587,110 +899,93 @@ $Clearly.smartNew = function() {
     b.unwrap();
   }
   
-  function bind_simple_tag(code, tag) {
-    bind_tag_creation(code, tag);
+  var bindTextTag = function(keyname, tag) {
+    var creator = makeTagCreator(tag);
+    var converter = makeTagConverter(tag);
+    
+    var textConverter = function(event) {
+	  if($Clearly.active.is('h1, h2, h3, h4, h5, h6, p, blockquote, pre')) {
 
-    $Clearly.nav.bind({ctrl:false, code:code}, function(event) {
-      if($Clearly.active.is('h1, h2, h3, h4, h5, h6, p, blockquote, pre')) {
-	$Clearly.changeTag(tag);
-      } else if($Clearly.active.is('li')) {
-	
-	change_tag($Clearly.active.parent(), '<section></section>');
-	$Clearly.active.siblings().andSelf().each(function(i, e) {
-	  change_tag($(e), tag);
-	});
-	$('.active').activate();
-	
-      }
-      $Clearly.save();
-      event.preventDefault();
-    });
+	    converter(event);
+	    return;
+
+	  } else if($Clearly.active.is('li')) {
+	    
+	    change_tag($Clearly.active.parent(), '<section></section>');
+	    $Clearly.active.siblings().andSelf().each(function(i, e) {
+	      change_tag($(e), tag);
+	    });
+	    $('.active').activate();
+	    $Clearly.save();
+	    
+	  }
+	  event.preventDefault();
+	};
+    
+    bind(keyname, textConverter, creator);
   };
   
-  bind_simple_tag(keys.p, '<p></p>'); // p
-  bind_simple_tag(keys.b, '<blockquote></blockquote>'); // b
-  bind_simple_tag(keys[';'], '<pre></pre>'); // pre
+  bindTextTag('P', '<p />');
+  bindTextTag('B', '<blockquote />');
+  bindTextTag('SEMICOLON', '<pre />');
 
-  for(var i=0; i<6; ++i) {
-    bind_simple_tag(i+49, '<h' + (i+1) + ' />');
+  for(var i=1; i<=6; ++i) {
+    bindTextTag(String(i), '<h' + i + ' />');
   }
   
-  /**
-   * Sections: e
-   */
-
-  bind_tag_creation(keys.e, '<section><p></p></section>');
-
-  $Clearly.nav.bind({ctrl:false, code:keys.e}, function(event) {
-    if($Clearly.active.is('ul, ol')) {
-      $Clearly.changeTag("<section></section>");
-      $Clearly.active.children().each(function(i, e) {
-	change_tag($(e), "<p></p>");
-      });
-    }
-    $Clearly.save();
-    event.preventDefault();
-  });
+  bind('BACKSLASH', null, makeTagCreator('<hr>'));
   
-  /**
-   * Unordered lists: u
-   */
-  
-  bind_tag_creation(keys.u, '<ul><li></li></ul>');
+  var sectionConverter = function(event) {
+	if($Clearly.active.is('ul, ol')) {
+	  $Clearly.changeTag("<section></section>");
+	  $Clearly.active.children().each(function(i, e) {
+	    change_tag($(e), "<p></p>");
+	  });
+	}
+	$Clearly.save();
+	event.preventDefault();
+      };
 
-  $Clearly.nav.bind({ctrl:false, code:keys.u}, function(event) {
-    if($Clearly.active.is('section')) {
-      var allowed = $Clearly.active.find('h1, h2, h3, h4, h5, h6, p, pre, blockquote, li');
-      $Clearly.changeTag("<ul></ul>");
-      $Clearly.active.empty().append(allowed);
-      $Clearly.active.children().each(function(i, e) {
-	change_tag($(e), "<li></li>");
-      });
-    } else if($Clearly.active.is('ol')) {
-      $Clearly.changeTag("<ul></ul>");
-    } else if($Clearly.active.parent().is('ol')) {
-      change_tag($Clearly.active.parent(), "<ul></ul>");
-    }
-    $Clearly.save();
-    event.preventDefault();
-  });
+  bind('E', sectionConverter, makeNestedTagCreator('<section><p></p></section>'));
   
-  /**
-   * Ordered lists: o
-   */
+  var makeListConverter = function(tagName) {
+	var tag = '<'+tagName+'></'+tagName+'>';
+	return function(event) {
 
-  bind_tag_creation(keys.o, '<ol><li></li></ul>');
-
-  $Clearly.nav.bind({ctrl:false, code:keys.o}, function(event) {
-    if($Clearly.active.is('section')) {
-      var allowed = $Clearly.active.find('h1, h2, h3, h4, h5, h6, p, pre, blockquote, li');
-      $Clearly.changeTag("<ol></ol>");
-      $Clearly.active.empty().append(allowed);
-      $Clearly.active.children().each(function(i, e) {
-	change_tag($(e), "<li></li>");
-      });
-    } else if($Clearly.active.is('ul')) {
-      $Clearly.changeTag("<ol></ol>");
-    } else if($Clearly.active.parent().is('ul')) {
-      change_tag($Clearly.active.parent(), "<ol></ol>");
-    }
-    $Clearly.save();
-    event.preventDefault();
-  });
+	  if($Clearly.active.is('section')) {
+	    var allowed = $Clearly.active.find('h1, h2, h3, h4, h5, h6, p, pre, blockquote, li');
+	    $Clearly.changeTag(tag);
+	    $Clearly.active.empty().append(allowed);
+	    $Clearly.active.children().each(function(i, e) {
+	      change_tag($(e), '<li></li>');
+	    });
+	  } else if($Clearly.active.is('ol, ul')) {
+	    $Clearly.changeTag(tag);
+	  } else if($Clearly.active.parent().is('ol, ul')) {
+	    change_tag($Clearly.active.parent(), tag);
+	  }
+	  $Clearly.save();
+	  event.preventDefault();
+	  
+	};
+      };
   
-    
-  /**
-   * Horizontal rules: \
-   */
-    
-  $Clearly.nav.bind({ctrl:true, code:keys['\\']}, function(event) {
+  bind('U', makeListConverter('ul'), makeNestedTagCreator('<ul><li></li></ul>'));
+  bind('O', makeListConverter('ol'), makeNestedTagCreator('<ol><li></li></ol>'));
+  
+
+  bind('SINGLE QUOTE', function(event) {
+    var a = $Clearly.active;
     if(event.shiftKey) {
-      $Clearly.active.before('<hr>').prev().scrollShow();
+      a.html(a.text());
     } else {
-      $Clearly.active.after('<hr>').next().scrollShow();
+      a.text(a.html());
     }
     event.preventDefault();
-  });
+    $Clearly.save();
+  }, null);
+  
+  // END element rules
   
   $Clearly.nav.bind({code:'46'}, function(event) { // del
     $Clearly.deleteActive(!event.shiftKey);
@@ -714,7 +1009,7 @@ $Clearly.smartNew = function() {
     event.preventDefault();
   });
   
-  $Clearly.nav.bind({ctrl:true, code:keys.s}, function(event) { // Ctrl + s
+  $Clearly.nav.bind({ ctrl: true, code: $Clearly.Keycodes['S'] }, function(event) { // Ctrl + s
     
     $Clearly.save();
     localStorage[location.pathname + '~'] = localStorage[location.pathname];
@@ -722,7 +1017,7 @@ $Clearly.smartNew = function() {
 
   });
   
-  $Clearly.nav.bind({ctrl:true, code:keys.r}, function(event) { // Ctrl + r
+  $Clearly.nav.bind({ ctrl: true, code: $Clearly.Keycodes['R'] }, function(event) { // Ctrl + r
     
     $Clearly.save();
     

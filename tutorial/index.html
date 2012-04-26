@@ -8,9 +8,9 @@
     <script src="/clearly.js"></script>
     <script>
       $(document).ready(function() {
-        $.extend(window, $Clearly);
-        $Clearly = window;
-        $Clearly.load();
+      $.extend(window, $Clearly);
+      $Clearly = window;
+      $Clearly.load();
       });
     </script>
     <link href="/style.css" rel="stylesheet" type="text/css">
@@ -19,21 +19,19 @@
     <h1>Clearly</h1>
     <section>
       <h2>Introduction</h2>
-    <p><span class="fancy">Clearly</span> is a <em>programmable structured text editor</em> implemented as a JavaScript library. If you ever hacked in JavaScript, you can go and fork its <a href="https://github.com/mafik/Clearly#readme">GitHub repository</a> (yay - it's open-source!). Of course you don't need any programming experience to use it. This tutorial will explain you everything you need to know :)</p>
-    <p>First of all - you need to know where are your documents going when you edit document. The answer is: <em>nowhere</em>. They are saved inside your browser in area accessible only to script from <code>clearly.pl</code>. They are accessible even if the <code>clearly.pl</code> is down and all of your documents can be easily exported (specialized export tools coming!). It means that, despite using internet browser, all your data is saved on your computer.</p>
-    <p>Second thing is - stop worrying about saving the document. All the changes you make are saved instantly after a key has been pressed. Whole document is stored in your browser, remember? If you want to make some major changes you can save your document in a backup (<code>[Ctrl + s]</code>) and compare two versions later (<code>[Ctrl + r]</code>) ... We'll get back to backups later on.</p>
-    <p>You can create as many documents as you want. All you need to do is to go to <code>clearly.pl/&lt;document name&gt;</code> and new document will be created. You can use any names you want (even prefixing document name with a path) but be careful with document names - if you loose them, the document might become inaccessible. Also even slight change in document name results in loading different documents. This can be useful - for example if you need a place to store some secrets&hellip;</p>
-    <p>Document in <span class="fancy">Clearly</span> is <em>structured</em> - every block of text is wrapped inside a
-      paragraph. Paragraphs are grouped inside <em>sections</em>. In fact this paragraph is placed inside a section. You will soon get hang of structure manipulation - it is powerfull and convenient tool.</p>
+      <p><span class="fancy">Clearly</span> is a <em>programmable structured text editor</em> implemented as a JavaScript library. If you ever hacked in JavaScript, you can go and fork its <a href="https://github.com/mafik/Clearly#readme">GitHub repository</a> (yay - it's open-source!). Of course you don't need any programming experience to use it. This tutorial will explain you everything you need to know :)</p>
+      <p>First of all - you need to know where are your documents sent when they are being changed. The answer is: <em>nowhere</em>. They are saved inside your browser in area accessible only to script from <code>clearly.pl</code>. They are accessible even if the <code>clearly.pl</code> is down and all of your documents can be easily exported (specialized export tools coming!). It means that, despite using internet browser, all your data is still saved on your computer.</p>
+      <p>Second thing is - stop worrying about saving the document. All the changes you make are saved instantly after a key has been pressed. Whole document is stored in your browser, remember? If you want to make some major changes you can save your document in a backup (<code>[Ctrl + s]</code>) and compare two versions later (<code>[Ctrl + r]</code>) ... We'll get back to backups later on.</p>
+      <p>You can create as many documents as you want. All you need to do is to go to <code>clearly.pl/&lt;document name&gt;</code> and new document will be created. You can use any names you want (even prefixing document name with a path) but be careful with document names - if you loose them, the document might become inaccessible. Also even slight change in document name results in loading different documents. Although it may not seem so, this can be useful - for example if you need a place to store some secrets&hellip;</p>
+      <p>Document in <span class="fancy">Clearly</span> is <em>structured</em> - every block of text is wrapped inside a
+	paragraph. Paragraphs are grouped inside <em>sections</em>. In fact this paragraph is placed inside a section. You will soon get hang of structure manipulation - it is powerfull and convenient tool.</p>
     </section>
     <section>
       <h2>Navigation</h2>
       <p>The document is actually o tree (mathematical tree of course) of HTML elements - sections, headers, paragraphs and a few others.
-	To make work easier one element is always active - its left border is slightly
-	thicker and darker. Some elements, while selected, have small visual
-	clues at the end indicating, what type of element is this.</p>
+	To make work easier one element is always active - it has brighter background and is slightly indented.</p>
       <p>When you click on an element it gets activated. Watch out not to 
-	click it twice though - it would start <code>edit mode</code>. You can leave edit
+	click it twice though - it would start <code>edit mode</code> (indicated by red glow around the element). You can leave edit
 	mode with <code>[Escape]</code> or by clicking outside currently edited element.
       <p>You can <em>use arrows to navigate</em> (<code>[&larr;] [&rarr;] [&uarr;] [&darr;]</code>) between next/previous elements
 	and to ascend/descent in their hierarchy. This way of navigating through text is called <em>tree navigation</em>. Try it now. This is main way of browsing big documents and you will very quickly start to use it intuitively.</p>
@@ -45,14 +43,27 @@
     </section>
     <section>
       <h2>Structure Manipulation</h2>
-      <p>Various elements have keys associated to them. When you press an element key, the active element is <em>converted</em> to that particular element. Try it: select an element and press one of the digit keys from <code>[1]</code> to <code>[6]</code>. This way you can create headers of different sizes.</p>
-      <p>Now turn a header back into a paragraph: press the <code>[p]</code> key while the header is selected.</p>
+      <hr>
+      <h3>Converions</h3>
+      <p>Various element types (such as header or paragraph) have keys associated to them. When you press an element key, the active element is <em>converted</em> to that particular element.<br> &bull; select this paragraph by clicking on it<br> &bull; press one of the digit keys from <code>[1]</code> to <code>[6]</code>.<br> This way you can create headers of different sizes.</p>
+      <p>Now turn a header back into a paragraph: press <code>[p]</code> while the header is selected.</p>
+      <hr>
+      <h3>Deletion, insertion & <em>killring</em></h3>
       <p>Press <code>[Delete]</code> with an element selected to remove it from the page. Elements removed this way are not lost - they are put into <em>killring</em> instead.</p>
       <p>You can retrieve an element from killring and paste it <em>after</em> current element by pressing <code>[Insert]</code>. Press <code>[Shift + Insert]</code> to add it before active element.</p>
+      <hr>
+      <h3>Creating new elements</h3>
       <p>If you press <code>[Ctrl + \]</code> you will insert new horizontal rule after selected element. Hold <code>Shift</code> to add it before instead.</p>
-      <p>You can <em>hide elements</em> by pressing the <code>[h]</code> key. Pressing it again will show the element back. It allows you to compact sections that are not important.</p>
+      <p>You can create all kinds of elements by pressing <code>[Ctrl + element key]</code>. By default creating new elements takes you to the edit mode but since horizontal rules can't be edited you are left at navigation mode.</p>
+      <hr>
+      <h3>Compressing elements</h3>
+      <p>You can <em>compress elements</em> by pressing the <code>[h]</code> key. Pressing it again will uncompress the element back. It allows you to compact sections or paragraphs that are too long or are not important at the moment.</p>
+      <hr>
+      <h3>Section wrapping & unwrapping</h3>
       <p>Press <code>[Ctrl + Shift + &rarr;]</code> to <em>wrap</em> active element with a section.</p>
       <p>Similarily <code>[Ctrl + Shift + &larr;]</code> will cause the element to <em>unwrap</em> parent section.</p>
+      <hr>
+      <h3>Bubbling</h3>
       <p>Holding down <code>[Shift]</code> while pressing <code>[&uarr;]</code> and <code>[&darr;]</code> will cause current element to <em>bubble</em>. You can supply this command with <code>[Ctrl]</code> to <em>bubble</em> accross other element boundaries. Use bubbling to reorder large parts of your document - move paragraphs, lists &amp; sections accross the document.</p>
     </section>
 
@@ -67,96 +78,119 @@
 
     <section>
       <h2>Backups & Restoring</h2>
-      <p>Unfortunately, <span class="fancy">Clearly</span> doesn't yet support undo mechanism for changes done in navigation mode (shuffling and removing elements). To stay safe you should use <em>backups</em>.</p>
+      <p>Unfortunately, <span class="fancy">Clearly</span> doesn't yet support undo mechanism for changes done in navigation mode (such as shuffling and removing elements). To stay safe you should use <em>backups</em>.</p>
       <p><code>[Ctrl + s]</code> creates new backup for current page. Backup is created as a new page with <code>~</code> (tilde) added to path (backup for <code>clearly.pl/tutorial/</code> is saved at <code>clearly.pl/tutorial/~</code>).</p>
-      <p><code>[Ctrl + r]</code> <em>reverts to backup</em>. This command <em>swaps</em> current document with a backup. If no backup is avaiable - the document is reverted to its original state (this way you can for example revert changes made in this tutorial).</p>
+      <p><code>[Ctrl + r]</code> <em>reverts to backup</em>. This command <em>swaps</em> current document with a backup. If no backup is avaiable - the document is reverted to its original state (this way you can for example revert changes made in this tutorial). You can press <code>[Ctrl + r]</code> repeatedly to quickly toggle between backup/original and current version.</p>
       <p><code>[Ctrl + Shift + r]</code> removes backup and saved page. Reverts document to its original state. Dangerous.</p>
     </section>
-
-    <section class=compact>
-      <h2>All kinds of elements...</h2>
-      <p>You can use several element types. They are divided into <em>grouping elements</em> and <em>simple elements</em></p>
-      <h4>Sections</h4>
-      <p>Basic grouping element. Its only purpose is to bind some content
-	together for easier manipulation and increased readability.</p>
-      <p>You can wrap element in section using <code>[Ctrl + Shift + &rarr;]</code>. Unwrapping is done by <code>[Ctrl + Shift + &larr;]</code>.</p>
-      <p>You can turn lists into sections by pressing <code><strong>[e]</strong></code>. Pressing <code>[Ctrl + e]</code> will create new section with a single paragraph & start edit mode.</p>
-      <p>Section boundaries restrict your movement and other commands. Hold <code>[Ctrl]</code> to bypass section boundaries - walk and bubble other elements accross them.</p>
-      <h4>Paragraphs</h4>
-      <p>Single most ubiquitous element. Use it to type all the basic stuff that you are working on. Paragraphs, when selected, are marked with decorative paragraph sign.</p>
-      <h4>Lists</h4>
-      <p>Lists are grouping elements - just like sections. Unlike sections, lists can contain only list items. They are more compact than sections and should be used to enumerate content.</p>
-      <p>There are two kinds of lists: <em>ordered</em> <code>[o]</code>, and <em>unordered</em> <code>[u]</code>. You can press appropiate key to convert active section to list of desired kind. Watch out though - this conversion flattens section content. When you supply conversion key with <code>[Ctrl]</code>, a new list with a single element is created.</p>
-      <h4>Headers</h4>
-      <p>Headers are designed to stand out in text and signal you most important parts. While selected, they are marked with <em>sharp sign</em> and their level.</p>
-      <p>You can convert any text element to header using number keys: <code>[1] &hellip; [6]</code>. To create new elements hold <code>[Ctrl]</code> while pressing number key.</p>
-      <h4>Horizontal Rules</h4>
-      <p>Horizontal rules can separate sets of paragraphs to signal more major topic change.</p>
-      <p>There is no element that could be converted into horizontal rule - you can only create, destroy and move them around. You can use <code>[Ctrl + \]</code> to create new rule after current element.</p>
-      <h4>Blockquote</h4>
-      <p>Blockquotes can be used to include some decorative text and focus attention. By default it is surrounded by decorative quotation marks.</p>
-      <p>Blockquotes can be created by <code>[Ctrl + b]</code>. You can convert any other text element into blockquote by pressing <code>[b]</code> while it's active.</p>
-      <h4>Preformatted text</h4>
-      <p>Preformatted text is a nice way of including source code or text files in the text flow. It preserves whitespace and uses monospace font.</p>
-      <p>Preformatted text can be created by <code>[Ctrl + ;]</code>. Other text elements can be converted by simple <code>[;]</code></p>
-    </section>
+    <!--
+	<section class=compact>
+	  <h2>All kinds of elements...</h2>
+	  <p>You can use several element types. They are divided into <em>grouping elements</em> and <em>simple elements</em></p>
+	  <h4>Sections</h4>
+	  <p>Basic grouping element. Its only purpose is to bind some content
+	    together for easier manipulation and increased readability.</p>
+	  <p>You can wrap element in section using <code>[Ctrl + Shift + &rarr;]</code>. Unwrapping is done by <code>[Ctrl + Shift + &larr;]</code>.</p>
+	  <p>You can turn lists into sections by pressing <code><strong>[e]</strong></code>. Pressing <code>[Ctrl + e]</code> will create new section with a single paragraph & start edit mode.</p>
+	  <p>Section boundaries restrict your movement and other commands. Hold <code>[Ctrl]</code> to bypass section boundaries - walk and bubble other elements accross them.</p>
+	  <h4>Paragraphs</h4>
+	  <p>Single most ubiquitous element. Use it to type all the basic stuff that you are working on. Paragraphs, when selected, are marked with decorative paragraph sign.</p>
+	  <h4>Lists</h4>
+	  <p>Lists are grouping elements - just like sections. Unlike sections, lists can contain only list items. They are more compact than sections and should be used to enumerate content.</p>
+	  <p>There are two kinds of lists: <em>ordered</em> <code>[o]</code>, and <em>unordered</em> <code>[u]</code>. You can press appropiate key to convert active section to list of desired kind. Watch out though - this conversion flattens section content. When you supply conversion key with <code>[Ctrl]</code>, a new list with a single element is created.</p>
+	  <h4>Headers</h4>
+	  <p>Headers are designed to stand out in text and signal you most important parts. While selected, they are marked with <em>sharp sign</em> and their level.</p>
+	  <p>You can convert any text element to header using number keys: <code>[1] &hellip; [6]</code>. To create new elements hold <code>[Ctrl]</code> while pressing number key.</p>
+	  <h4>Horizontal Rules</h4>
+	  <p>Horizontal rules can separate sets of paragraphs to signal more major topic change.</p>
+	  <p>There is no element that could be converted into horizontal rule - you can only create, destroy and move them around. You can use <code>[Ctrl + \]</code> to create new rule after current element.</p>
+	  <h4>Blockquote</h4>
+	  <p>Blockquotes can be used to include some decorative text and focus attention. By default it is surrounded by decorative quotation marks.</p>
+	  <p>Blockquotes can be created by <code>[Ctrl + b]</code>. You can convert any other text element into blockquote by pressing <code>[b]</code> while it's active.</p>
+	  <h4>Preformatted text</h4>
+	  <p>Preformatted text is a nice way of including source code or text files in the text flow. It preserves whitespace and uses monospace font.</p>
+	  <p>Preformatted text can be created by <code>[Ctrl + ;]</code>. Other text elements can be converted by simple <code>[;]</code></p>
+	</section>
+	-->
     <section>
+      <h2>Text Editing</h2>
+      <p>Press <code>[Enter]</code> at any time to start editing active element. Edit mode is indicated by red glow around active element. While in edit mode, most of the keys that switch or swap elements is inactive - instead you can move caret and enter text.</p>
+      <p>After a while you might want to speed things up. You can make new elements by pressing <code>[Ctrl + Enter]</code>. This command chooses element type based on the currently active element. When it is section - it will create new paragraph inside. When in the list - new list item. New item also checks if previous one is marked with todo state and sets marks new one with "TODO".</p>
+      <p>To exit edit mode press <code>[Escape]</code> or click on another elment.</p>
+      <p>You can also create paragraph series by pressing <code>[Enter]</code> while in edit mode (non-breaking carret return can be achieved by <code>[Ctrl + Enter]</code>).</p>
+      <p>Empty paragraphs are automatically destroyed.</p>
+      <p>Various <em>text formatting</em> can be done by pressing <code>[Ctrl + formatting key]</code>. Complete list of formatting keys is included at the end of <a class="fancy" href="#cheatsheet">Keyboard Cheatsheet</a>.</p>
+    </section>
+    <section id="cheatsheet">
       <h2>Keyboard Cheatsheet</h2>
       <section>
-      <table>
-	<tr><td><code>[&uarr;], [&rarr;], [&darr;], [&larr;]</code></td><td>tree navigation</td></tr>
-	<tr><td><code>[Ctrl + &uarr;], [Ctrl + &darr;]</code></td><td>list navigation</td></tr>
-	<tr><td><code>[Shift + </code><em>navigation</em><code>]</code></td><td>drag element around</td></tr>
-	<tr><td><code>[Ctrl + Shift + &rarr;/&larr;]</code></td><td>wrap or unwrap element with a section</td></tr>
-	<tr><td><code>[Tab], [Shift + Tab]</code></td><td>change todo state</td></tr>
-	<tr><td><code>[h]</code></td><td>toggle hidden state</td></tr>
-	<tr><td><code>[Ctrl + s]</code></td><td>backup current document</td></tr>
-	<tr><td><code>[Ctrl + r]</code></td><td>restore backed up document (swapping with current)</td></tr>
-	<tr><td><code>[Ctrl + Shift + r]</code></td><td>revent document & remove backup</td></tr>
-	<tr><td><code>[Delete]</code></td><td>removes active element from the page and puts it at the end of the killring</td></tr>
-	<tr><td><code>[Shift + Delete]</code></td><td>removes active element from the page</td></tr>
-	<tr><td><code>[Insert]</code></td><td>takes the last element from the killring and puts it after active element</td></tr>
-	<tr><td><code>[Shift + Insert]</code></td><td>takes the last element from the killring and puts it <em>before</em> active element</td></tr>
-      </table>
+	<table>
+	  <tr><td><code>[&uarr;], [&rarr;], [&darr;], [&larr;]</code></td><td>tree navigation</td></tr>
+	  <tr><td><code>[Ctrl + &uarr;], [Ctrl + &darr;]</code></td><td>list navigation</td></tr>
+	  <tr><td><code>[Shift + </code><em>navigation</em><code>]</code></td><td>drag element around</td></tr>
+	  <tr><td><code>[Ctrl + Shift + &rarr;/&larr;]</code></td><td>wrap or unwrap element with a section</td></tr>
+	  <tr><td><code>[Tab], [Shift + Tab]</code></td><td>change todo state</td></tr>
+	  <tr><td><code>[h]</code></td><td>toggle compression</td></tr>
+	  <tr><td><code>[Ctrl + s]</code></td><td>backup current document</td></tr>
+	  <tr><td><code>[Ctrl + r]</code></td><td>restore backed up document (swapping with current)</td></tr>
+	  <tr><td><code>[Ctrl + Shift + r]</code></td><td>revert document & remove backup</td></tr>
+	  <tr><td><code>[Delete]</code></td><td>removes active element from the page and puts it at the end of the killring</td></tr>
+	  <tr><td><code>[Shift + Delete]</code></td><td>removes active element from the page</td></tr>
+	  <tr><td><code>[Insert]</code></td><td>takes the last element from the killring and puts it after active element</td></tr>
+	  <tr><td><code>[Shift + Insert]</code></td><td>takes the last element from the killring and puts it <em>before</em> active element</td></tr>
+	  <tr><td><code>[']</code></td><td>turns contents of a node from HTML to text</td></tr>
+	  <tr><td><code>[Shift + ']</code></td><td>turns contents of a node from text to HTML</td></tr>
+	  <!-- <tr><td><code>[]</code></td><td></td></tr> -->
+	</table>
       </section>
       <h3>Element Types</h3>
       <section>
-      <table>
-	<tr><td><code>[e]</code></td><td>section</td></tr>
-	<tr><td><code>[o]</code></td><td>ordered list</td></tr>
-	<tr><td><code>[u]</code></td><td>unordered list</td></tr>
-	<tr><td><code>[p]</code></td><td>paragraph</td></tr>
-	<tr><td><code>[1] &hellip; [6]</code></td><td>headers</td></tr>
-	<tr><td><code>[\]</code></td><td>horizontal rule</td></tr>
-	<tr><td><code>[b]</code></td><td>block quote</td></tr>
-	<tr><td><code>[;]</code></td><td>preformatted text</td></tr>
-      </table>
-      <p><em>Element key alone</em> - converts active element (if possible).</p>
-      <p><em>Element key<code> + Ctrl</code></em> - creates new element after active and starts edit mode.</p>
-      <p><em>Element key<code> + Ctrl + Shift</code></em> - creates new element <em>before</em> active.</p>
+	<table>
+	  <tr><td><code>[e]</code></td><td>section</td></tr>
+	  <tr><td><code>[o]</code></td><td>ordered list</td></tr>
+	  <tr><td><code>[u]</code></td><td>unordered list</td></tr>
+	  <tr><td><code>[p]</code></td><td>paragraph</td></tr>
+	  <tr><td><code>[1] &hellip; [6]</code></td><td>headers</td></tr>
+	  <tr><td><code>[\]</code></td><td>horizontal rule</td></tr>
+	  <tr><td><code>[b]</code></td><td>block quote</td></tr>
+	  <tr><td><code>[;]</code></td><td>preformatted text</td></tr>
+	</table>
+	<p><em>Element key alone</em> - converts active element (if possible).</p>
+	<p><em>Element key<code> + Ctrl</code></em> - creates new element after active and starts edit mode.</p>
+	<p><em>Element key<code> + Ctrl + Shift</code></em> - creates new element <em>before</em> active.</p>
+      </section>
+      <h3>Edit mode</h3>
+      <section>
+	<table>
+	  <tr><td><code>[Ctrl + Escape]</code></td><td>Remove formatting from selected text.</td></tr>
+	  <tr><td><code>[Ctrl + b]</code></td><td>Bold text.</td></tr>
+	  <tr><td><code>[Ctrl + i]</code></td><td>Italic text.</td></tr>
+	  <tr><td><code>[Ctrl + u]</code></td><td>Underline.</td></tr>
+	  <tr><td><code>[Ctrl + s]</code></td><td>Strike through.</td></tr>
+	  <tr><td><code>[Ctrl + &uarr;]</code></td><td>Superscript.</td></tr>
+	  <tr><td><code>[Ctrl + &darr;]</code></td><td>Subscript.</td></tr>
+	  <tr><td><code>[Ctrl + e]</code></td><td>Turn selected text into link (you will be asked for URL).</td></tr>
+	  <tr><td><code>[Ctrl + -]</code></td><td>Decrease font size.</td></tr>
+	  <tr><td><code>[Ctrl + +]</code></td><td>Increase font size.</td></tr>
+	</table>
       </section>
     </section>
     <section>
-      <h2>Text Editing</h2>
-      <p>Press <code>[Enter]</code> anytime to start editing active element.</p>
-      <p>To speed things up, you can make new elements by pressing <code>[Ctrl + Enter]</code>. This command chooses element type based on the currently active element. When it is section - it will create new paragraph inside. When in the list - new list item. New item also checks if previous one is marked with todo state and sets current to "TODO" if it is.</p>
-      <p>While in edit mode, the left border is marked red and visual hints which indicate element type are opaque.</p>
-      <p>To exit edit mode press <code>[Escape]</code> or click on another elment.</p>
-      <p>Pressing <code>[Enter]</code> while in edit mode will create new paragraph. Note that empty paragraphs are automatically destroyed when leaving edit mode.</p>
-      <h3>Text Formatting</h3>
-      <p><em>While in edit mode</em>, you can format selected text by pressing <code>[Ctrl + _]</code>, where <code>_</code> is one of:</p>
-      <ul>
-	<li><code>[Escape]</code> - Remove formatting from selected text.</li>
-	<li><code>[b]</code> - Bold text.</li>
-	<li><code>[i]</code> - Italic text.</li>
-	<li><code>[u]</code> - Underline.</li>
-	<li><code>[s]</code> - Strike through.</li>
-	<li><code>[&uarr;]</code> - Superscript.</li>
-	<li><code>[&darr;]</code> - Subscript.</li>
-	<li><code>[e]</code> - Turn selected text into link (you will be asked for URL).</li>
-	<li><code>[-]</code> - Decrease font size.</li>
-	<li><code>[+]</code> - Increase font size.</li>
-      </ul>
+      <h2>Advanced usage</h2>
+      <h3>Including arbitrary HTML code</h3>
+      <p>While in navigation mode, you can press <code>[']</code> to turn HTML contents of an active node into text form. This is safe operation that escapes any unsafe character combinations and lets you make changes in the HTML code of an element.</p>
+      <p>When your edits are done, you can convert contents back into HTML form by pressing <code>[Ctrl + ']</code>. This operation isn't as safe as the previous one - it will discard any child elements that are already realized in DOM. All contents will be replaced by parsed text representation.</p>
+      <p>You can use arbitrary html code to include more advanced elements such as: buttons from social sites, iframes, images. Even custom scripts are allowed inside.</p>
+      <h3>Using JavaScript console</h3>
+      <p><span class="fancy">Clearly</span> is tightly integrates with your browser so you can use your browser's built-in JavaScript console to interact with <span class="fancy">Clearly</span>. All methods and properities of editor are copied into the <code>window</code> object so you can use eq. <code>active</code> to refer to currently active element.</p>
+      <p>Example:</p>
+      <pre>
+for(var i = 0; i &lt; 10; ++i) {
+  smartNew();
+  active.text( "Make it to the level " + (i+1) );
+  todo.first();
+}</pre>
+      <p>Although these functions are intended for programmers writing plugins, they may become useful in automating some repetitive work.</p>
     </section>
   </body>
 </html>
