@@ -13,6 +13,7 @@
       href="/favicon.png" />
     <script src="/jquery.js"></script>
     <script src="/clearly.js"></script>
+    <script src="/clearly.math.js"></script>
     <script>
       $(document).ready(function() {
       $.extend(window, $Clearly);
@@ -88,6 +89,14 @@
     </section>
 
     <section>
+      <h2>Math</h2>
+      <p>You can write pretty math eqations easily. Easily assuming you know what LaTeX is. LaTeX formulas that you write between <code>$</code> and <code>$</code> will be converted into math symbols when you press [L] (this is navigation mode command).</p>
+      <p>Example (activate this paragraph and press <code>[L]</code>): $\frac{d}{dx}f(x)=\lim_{h\to 0}\frac{f(x+h)-f(x)}{h}$.</p>
+      <p>LaTeX math can be quite troublesome so you can alternatively use <a href="http://www1.chapman.edu/~jipsen/mathml/asciimathsyntax.html">ASCIIMathML</a> to decorate text with math. Key to mathematize contents of active node is <code>[M]</code>.</p>
+      <p>Another example (activate this paragraph and press <code>[M]</code>): `f(x)=sum_(n=0)^oo(f^((n))(a))/(n!)(x-a)^n` .</p>
+    </section>
+
+    <section>
       <h2>TODO Lists</h2>
       <p><span class="fancy">Clearly</span> allows you to store and manage multiple task lists by annotating elements with <em>task states</em> (todo, cancelled, done, etc.).</p>
       <p>Press <code>[Tab]</code> to change task state of the active element.</p>
@@ -103,36 +112,6 @@
       <p><code>[Ctrl + r]</code> <em>reverts to backup</em>. This command <em>swaps</em> current document with a backup. If no backup is avaiable - the document is reverted to its original state (this way you can for example revert changes made in this tutorial). You can press <code>[Ctrl + r]</code> repeatedly to quickly toggle between backup/original and current version.</p>
       <p><code>[Ctrl + Shift + r]</code> removes backup and saved page. Reverts document to its original state. Dangerous.</p>
     </section>
-    <!--
-	<section class=compact>
-	  <h2>All kinds of elements...</h2>
-	  <p>You can use several element types. They are divided into <em>grouping elements</em> and <em>simple elements</em></p>
-	  <h4>Sections</h4>
-	  <p>Basic grouping element. Its only purpose is to bind some content
-	    together for easier manipulation and increased readability.</p>
-	  <p>You can wrap element in section using <code>[Ctrl + Shift + &rarr;]</code>. Unwrapping is done by <code>[Ctrl + Shift + &larr;]</code>.</p>
-	  <p>You can turn lists into sections by pressing <code><strong>[e]</strong></code>. Pressing <code>[Ctrl + e]</code> will create new section with a single paragraph & start edit mode.</p>
-	  <p>Section boundaries restrict your movement and other commands. Hold <code>[Ctrl]</code> to bypass section boundaries - walk and bubble other elements accross them.</p>
-	  <h4>Paragraphs</h4>
-	  <p>Single most ubiquitous element. Use it to type all the basic stuff that you are working on. Paragraphs, when selected, are marked with decorative paragraph sign.</p>
-	  <h4>Lists</h4>
-	  <p>Lists are grouping elements - just like sections. Unlike sections, lists can contain only list items. They are more compact than sections and should be used to enumerate content.</p>
-	  <p>There are two kinds of lists: <em>ordered</em> <code>[o]</code>, and <em>unordered</em> <code>[u]</code>. You can press appropiate key to convert active section to list of desired kind. Watch out though - this conversion flattens section content. When you supply conversion key with <code>[Ctrl]</code>, a new list with a single element is created.</p>
-	  <h4>Headers</h4>
-	  <p>Headers are designed to stand out in text and signal you most important parts. While selected, they are marked with <em>sharp sign</em> and their level.</p>
-	  <p>You can convert any text element to header using number keys: <code>[1] &hellip; [6]</code>. To create new elements hold <code>[Ctrl]</code> while pressing number key.</p>
-	  <h4>Horizontal Rules</h4>
-	  <p>Horizontal rules can separate sets of paragraphs to signal more major topic change.</p>
-	  <p>There is no element that could be converted into horizontal rule - you can only create, destroy and move them around. You can use <code>[Ctrl + \]</code> to create new rule after current element.</p>
-	  <h4>Blockquote</h4>
-	  <p>Blockquotes can be used to include some decorative text and focus attention. By default it is surrounded by decorative quotation marks.</p>
-	  <p>Blockquotes can be created by <code>[Ctrl + b]</code>. You can convert any other text element into blockquote by pressing <code>[b]</code> while it's active.</p>
-	  <h4>Preformatted text</h4>
-	  <p>Preformatted text is a nice way of including source code or text files in the text flow. It preserves whitespace and uses monospace font.</p>
-	  <p>Preformatted text can be created by <code>[Ctrl + ;]</code>. Other text elements can be converted by simple <code>[;]</code></p>
-	</section>
-	-->
-    <section>
       <h2>Text Editing</h2>
       <p>Press <code>[Enter]</code> at any time to start editing active element. Edit mode is indicated by red glow around active element. While in edit mode, most of the keys that switch or swap elements is inactive - instead you can move caret and enter text.</p>
       <p>After a while you might want to speed things up. You can make new elements by pressing <code>[Ctrl + Enter]</code>. This command chooses element type based on the currently active element. When it is section - it will create new paragraph inside. When in the list - new list item. New item also checks if previous one is marked with todo state and sets marks new one with "TODO".</p>
@@ -160,6 +139,8 @@
 	  <tr><td><code>[Shift + Insert]</code></td><td>takes the last element from the killring and puts it <em>before</em> active element</td></tr>
 	  <tr><td><code>[']</code></td><td>turns contents of a node from HTML to text</td></tr>
 	  <tr><td><code>[Shift + ']</code></td><td>turns contents of a node from text to HTML</td></tr>
+	  <tr><td><code>[L]</code></td><td>latexize contents of active node</td></tr>
+	  <tr><td><code>[M]</code></td><td>mathematize contents of active node</td></tr>
 	  <!-- <tr><td><code>[]</code></td><td></td></tr> -->
 	</table>
       </section>
