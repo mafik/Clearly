@@ -3391,12 +3391,12 @@
     $Clearly.save();
   };
   
-  $Clearly.math = new $Clearly.Mode('math');
-  $Clearly.math.bind({ ctrl: false, shift: false,
+  //$Clearly.math = new $Clearly.Mode('math');
+  $Clearly.nav.bind({ ctrl: false, shift: false,
 		       code: $Clearly.Keycodes['M'] }, $Clearly.mathematize);
-  $Clearly.math.bind({ ctrl: false, shift: false,
+  $Clearly.nav.bind({ ctrl: false, shift: false,
 		       code: $Clearly.Keycodes['L'] }, $Clearly.latexize);
-  $Clearly.math.start();
+  //$Clearly.math.start();
 
 })();
 
