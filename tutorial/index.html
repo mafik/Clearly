@@ -91,6 +91,7 @@
     <section>
       <h2>Math</h2>
       <p>You can write pretty math eqations easily. Easily assuming you know what LaTeX is. LaTeX formulas that you write between <code>$</code> and <code>$</code> will be converted into math symbols when you press [L] (this is navigation mode command).</p>
+      <p><em>Note:</em> many browsers don't yet support MathML. This support will likely come in the future but for now <a href="http://caniuse.com/mathml">these</a> are the only browsers that display math properly.</p>
       <p>Example (activate this paragraph and press <code>[L]</code>): $\frac{d}{dx}f(x)=\lim_{h\to 0}\frac{f(x+h)-f(x)}{h}$.</p>
       <p>LaTeX math can be quite troublesome so you can alternatively use <a href="http://www1.chapman.edu/~jipsen/mathml/asciimathsyntax.html">ASCIIMathML</a> to decorate text with math. Key to mathematize contents of active node is <code>[M]</code>.</p>
       <p>Another example (activate this paragraph and press <code>[M]</code>): `f(x)=sum_(n=0)^oo(f^((n))(a))/(n!)(x-a)^n` .</p>
@@ -112,6 +113,7 @@
       <p><code>[Ctrl + r]</code> <em>reverts to backup</em>. This command <em>swaps</em> current document with a backup. If no backup is avaiable - the document is reverted to its original state (this way you can for example revert changes made in this tutorial). You can press <code>[Ctrl + r]</code> repeatedly to quickly toggle between backup/original and current version.</p>
       <p><code>[Ctrl + Shift + r]</code> removes backup and saved page. Reverts document to its original state. Dangerous.</p>
     </section>
+    <section>
       <h2>Text Editing</h2>
       <p>Press <code>[Enter]</code> at any time to start editing active element. Edit mode is indicated by red glow around active element. While in edit mode, most of the keys that switch or swap elements is inactive - instead you can move caret and enter text.</p>
       <p>After a while you might want to speed things up. You can make new elements by pressing <code>[Ctrl + Enter]</code>. This command chooses element type based on the currently active element. When it is section - it will create new paragraph inside. When in the list - new list item. New item also checks if previous one is marked with todo state and sets marks new one with "TODO".</p>
