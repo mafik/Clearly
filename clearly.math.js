@@ -1,3 +1,11 @@
+/*
+  This file is part of Clearly it extends ASCIIMathML.js by providing
+  bindings to module system of Clearly. This file is subject to GPLv3
+  (see http://www.gnu.org/licenses/).
+  
+  Authors: Marek Rogalski, Peter Jipsen, Paulo Soares, Douglas Woodall
+ */
+
 (function() {
   
   /*
