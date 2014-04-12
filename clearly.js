@@ -1002,14 +1002,13 @@ $Clearly.smartNew = function() {
   }, null);
   
   // END element rules
-  
-  $Clearly.nav.bind({code:'46'}, function(event) { // del
+  var del = function(event) { // del
     $Clearly.deleteActive(!event.shiftKey);
     $Clearly.save();
     event.preventDefault();
-  });
-  
-  $Clearly.nav.bind({ctrl:false, code:'45'}, function(event) { // insert
+  };
+
+  var insert = function(event) { // insert
     if(event.shiftKey) {
       $Clearly.active.before($Clearly.killring.pop());
     } else {
@@ -1017,7 +1016,13 @@ $Clearly.smartNew = function() {
     }
     $Clearly.save();
     event.preventDefault();
-  });
+  };
+  
+  $Clearly.nav.bind({code:'46'}, del); // everybody besides mac
+  $Clearly.nav.bind({ctrl:false, code:'8'}, del); // mac
+  
+  $Clearly.nav.bind({code:'45'}, insert); // everybody besides mac
+  $Clearly.nav.bind({ctrl:true, code:'8'}, insert); // mac
   
   $Clearly.nav.bind({code:'72'}, function(event) { // h
     $Clearly.nav.hide();
