@@ -169,9 +169,10 @@
       <h3>Edit mode</h3>
       <section>
 	<table>
-	  <tr><td><code>[Ctrl + Escape]</code></td><td>Remove formatting from selected text.</td></tr>
+	  <tr><td><code>[Ctrl + Escape]</code> or <code>[Ctrl + Shift + Escape]</code></td><td>Remove formatting from selected text.</td></tr>
 	  <tr><td><code>[Ctrl + b]</code></td><td>Bold text.</td></tr>
 	  <tr><td><code>[Ctrl + i]</code></td><td>Italic text.</td></tr>
+	  <tr><td><code>[Ctrl + f]</code></td><td>Fancy text.</td></tr>
 	  <tr><td><code>[Ctrl + u]</code></td><td>Underline.</td></tr>
 	  <tr><td><code>[Ctrl + s]</code></td><td>Strike through.</td></tr>
 	  <tr><td><code>[Ctrl + &uarr;]</code></td><td>Superscript.</td></tr>
@@ -186,7 +187,7 @@
       <h2>Advanced usage</h2>
       <h3>Including arbitrary HTML code</h3>
       <p>While in navigation mode, you can press <code>[']</code> to turn HTML contents of an active node into text form. This is safe operation that escapes any unsafe character combinations and lets you make changes in the HTML code of an element.</p>
-      <p>When your edits are done, you can convert contents back into HTML form by pressing <code>[Ctrl + ']</code>. This operation isn't as safe as the previous one - it will discard any child elements that are already realized in DOM. All contents will be replaced by parsed text representation.</p>
+      <p>When your edits are done, you can convert contents back into HTML form by pressing <code>[Shift + ']</code>. This operation isn't as safe as the previous one - it will discard any child elements that are already realized in DOM. All contents will be replaced by parsed text representation.</p>
       <p>You can use arbitrary html code to include more advanced elements such as: buttons from social sites, iframes, images. Even custom scripts are allowed inside.</p>
       <h3>Using JavaScript console</h3>
       <p><span class="fancy">Clearly</span> is tightly integrates with your browser so you can use your browser's built-in JavaScript console to interact with <span class="fancy">Clearly</span>. All methods and properities of editor are copied into the <code>window</code> object so you can use eq. <code>active</code> to refer to currently active element.</p>
