@@ -190,13 +190,16 @@
       <p>When your edits are done, you can convert contents back into HTML form by pressing <code>[Shift + ']</code>. This operation isn't as safe as the previous one - it will discard any child elements that are already realized in DOM. All contents will be replaced by parsed text representation.</p>
       <p>You can use arbitrary html code to include more advanced elements such as: buttons from social sites, iframes, images. Even custom scripts are allowed inside.</p>
       <h3>Using JavaScript console</h3>
-      <p><span class="fancy">Clearly</span> is tightly integrates with your browser so you can use your browser's built-in JavaScript console to interact with <span class="fancy">Clearly</span>. All methods and properities of editor are copied into the <code>window</code> object so you can use eq. <code>active</code> to refer to currently active element.</p>
+      <p><em class="fancy">Clearly</em> is tightly integrates with your browser so you can use your browser's built-in JavaScript console to interact with <span class="fancy">Clearly</span>. All methods and properities of editor are copied into the <code>window</code> object so you can use eq. <code>active</code> to refer to currently active element.</p>
+      <p>You can even make <em class="fancy">Clearly</em> run scripts written inside itself. Select paragraph below and press <code>[Shift + ']</code>:</p>
       <pre>
+&lt;script&gt;
 for(var i = 0; i &lt; 10; ++i) {
   smartNew();
-  active.text( "Make it to the level " + (i+1) );
+  active.text( "Task " + (i+1) + " created" );
   todo.first();
-}</pre>
+}
+&lt;/script&gt;</pre>
       <p>Although these functions are intended for programmers writing plugins, they may become useful in automating some repetitive work.</p>
     </section>
     <section>
