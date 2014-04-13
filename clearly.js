@@ -671,14 +671,15 @@ $Clearly.smartNew = function() {
     
   };
   
-  
-  bind('27', function(event) { // escape
-    
+  var removeFormat = function(event) {
     document.execCommand('removeFormat', false, null);
     document.execCommand('unlink', false, null);
-    event.preventDefault();
-        
-  });
+    event.preventDefault();    
+  };
+  $Clearly.edit.bind({ ctrl:true // shift: undefined
+                , alt: false
+                , meta: false
+                , code: 27 }, removeFormat); // escape
   
   bind('66', function(event) { // b
     
@@ -772,19 +773,29 @@ $Clearly.smartNew = function() {
         
   });
   
-  bind('109', function(event) { // -_
-    
-    document.execCommand('decreaseFontSize', false, null);
+  var decreaseFontSize = function(event) { // -_
+    if ($.browser.mozilla || $.browser.opera) {
+      document.execCommand('decreaseFontSize', false, null);
+    } else {
+      wrap_with(function() { return document.createElement('small') });
+    }
     event.preventDefault();
-        
-  });
+  };
+
+  var increaseFontSize = function(event) { // =+
+    if ($.browser.mozilla || $.browser.opera) {
+      document.execCommand('increaseFontSize', false, null);
+    } else {
+      wrap_with(function() { return document.createElement('big') });
+    }
+    event.preventDefault();
+  };
+
+  bind('109', decreaseFontSize);
+  bind('189', decreaseFontSize);
   
-  bind('61', function(event) { // =+
-    
-    document.execCommand('increaseFontSize', false, null);
-    event.preventDefault();
-        
-  });
+  bind('61', increaseFontSize);
+  bind('187', increaseFontSize);
 
 })();
 
