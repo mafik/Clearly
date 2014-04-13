@@ -1,0 +1,27 @@
+CACHE MANIFEST
+# rev 1
+CACHE:
+/bg.png
+/clearly.js
+/clearly.math.js
+/d.svg
+/favicon.png
+/index.html
+/LICENSE.html
+/jquery.js
+/style.css
+/thumb.png
+/tutorial/index.html
+http://fonts.googleapis.com/css?family=Dosis:400,700|Ubuntu:400,400italic,700,700italic|Ubuntu+Mono:400,400italic,700,700italic&subset=latin-ext
+http://themes.googleusercontent.com/static/fonts/dosis/v2/SD_sh9aV9vitKsBsjDXok_esZW2xOQ-xsNqO47m55DA.woff
+http://themes.googleusercontent.com/static/fonts/dosis/v2/tYjwoPxcNbCapURVAi2M5g.woff
+http://themes.googleusercontent.com/static/fonts/ubuntu/v5/nsLtvfQoT-rVwGTHHnkeJj8E0i7KZn-EPnyo3HZu7kw.woff
+http://themes.googleusercontent.com/static/fonts/ubuntu/v5/OMD20Sg9RTs7sUORCEN-7dIh4imgI8P11RFo6YPCPC0.woff
+http://themes.googleusercontent.com/static/fonts/ubuntu/v5/djUe04BCq9zQJd4o6n2eG_esZW2xOQ-xsNqO47m55DA.woff
+http://themes.googleusercontent.com/static/fonts/ubuntumono/v4/ceqTZGKHipo8pJj4molytoUt79146ZFaIJxILcpzmhI.woff
+http://themes.googleusercontent.com/static/fonts/ubuntumono/v4/KAKuHXAHZOeECOWAHsRKAyiURDTH4ZeuJyFQH0IObys.woff
+http://themes.googleusercontent.com/static/fonts/ubuntumono/v4/n_d8tv_JOIiYyMXR4eaV9VO4m0VGpPRH_NXW-QMownw.woff
+FALLBACK:
+/ /index.html
+NETWORK:
+http://www.google-analytics.com/ga.js
