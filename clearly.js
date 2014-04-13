@@ -765,7 +765,7 @@ $Clearly.smartNew = function() {
   bind('70', function(event) { // f -> <... class="fancy">
     
     wrap_with(function() {
-      var e = document.createElement('span');
+      var e = document.createElement('em');
       e.className = 'fancy';
       return e;
     });
