@@ -17,6 +17,13 @@
       href="/favicon.png" />
     <script src="/jquery.js"></script>
     <script src="/clearly.js"></script>
+    <script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+       tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+       skipStartupTypeset: true
+     });
+    </script>
+    <script src="/MathJax/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
     <script src="/clearly.math.js"></script>
     <script>
       $(document).ready(function() {
@@ -94,10 +101,9 @@
 
     <section>
       <h2>Math</h2>
-      <p>You can write pretty math eqations easily. Easily assuming you know what LaTeX is. LaTeX formulas that you write between <code>$</code> and <code>$</code> will be converted into math symbols when you press [L] (this is navigation mode command).</p>
-      <p><em>Note:</em> many browsers don't yet support MathML. This support will likely come in the future but for now <a href="http://caniuse.com/mathml">these</a> are the only browsers that display math properly.</p>
-      <p>Example (activate this paragraph and press <code>[L]</code>): $\frac{d}{dx}f(x)=\lim_{h\to 0}\frac{f(x+h)-f(x)}{h}$.</p>
-      <p>LaTeX math can be quite troublesome so you can alternatively use <a href="http://www1.chapman.edu/~jipsen/mathml/asciimathsyntax.html">ASCIIMathML</a> to decorate text with math. Key to mathematize contents of active node is <code>[M]</code>.</p>
+      <p>You can write pretty math eqations easily. Easily assuming you know what LaTeX is. LaTeX formulas that you write between <code>$</code> and <code>$</code> will be converted into math symbols when you press <code>[M]</code> (this is navigation mode command).</p>
+      <p>Example (activate this paragraph and press <code>[M]</code>): $\frac{d}{dx}f(x)=\lim_{h\to 0}\frac{f(x+h)-f(x)}{h}$.</p>
+      <p>LaTeX math can be quite troublesome so you can alternatively use <a href="http://www1.chapman.edu/~jipsen/mathml/asciimathsyntax.html">ASCIIMathML</a> to decorate text with math. Key to mathematize contents of active node is still <code>[M]</code>.</p>
       <p>Another example (activate this paragraph and press <code>[M]</code>): `f(x)=sum_(n=0)^oo(f^((n))(a))/(n!)(x-a)^n` . ASCIIMath formulas should be surrounded with backticks (`) and separated from the rest of the text with spaces.</p>
     </section>
 
@@ -145,8 +151,7 @@
 	  <tr><td><code>[Shift + Insert]</code> or <code>[Ctrl + Shift + Backspace]</code></td><td>takes the last element from the killring and puts it <em>before</em> active element</td></tr>
 	  <tr><td><code>[']</code></td><td>turns contents of a node from HTML to text</td></tr>
 	  <tr><td><code>[Shift + ']</code></td><td>turns contents of a node from text to HTML</td></tr>
-	  <tr><td><code>[L]</code></td><td>latexize contents of active node</td></tr>
-	  <tr><td><code>[M]</code></td><td>mathematize contents of active node</td></tr>
+	  <tr><td><code>[M]</code></td><td>typeset math contents of active node</td></tr>
 	  <!-- <tr><td><code>[]</code></td><td></td></tr> -->
 	</table>
       </section>
