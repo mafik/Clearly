@@ -26,7 +26,11 @@ html {
 .active {
   border-color: #000;
   background: #fff;
-  margin-left: 10px;
+  -webkit-transform: translateX(10px);
+  -moz-transform: translateX(10px);
+  -ms-transform: translateX(10px);
+  -o-transform: translateX(10px);
+  transform: translateX(10px);
   color: #223;
   box-shadow: 0 0 5px #bbb;
 }
@@ -59,11 +63,8 @@ h5,
 h6,
 li,
 hr {
-  -webkit-transition: margin-left 0.3s, border-color 0.3s, background 0.3s, font-size 0.3s;
-  -moz-transition: margin-left 0.3s, border-color 0.3s, background 0.3s, font-size 0.3s;
-  -ms-transition: margin-left 0.3s, border-color 0.3s, background 0.3s, font-size 0.3s;
-  -o-transition: margin-left 0.3s, border-color 0.3s, background 0.3s, font-size 0.3s;
-  transition: margin-left 0.3s, border-color 0.3s, background 0.3s, font-size 0.3s;
+  transition: -webkit-transform 0.3s, border-color 0.3s, background 0.3s, font-size 0.3s;
+  transition: transform 0.3s, border-color 0.3s, background 0.3s, font-size 0.3s;
 }
 section,
 p,
@@ -79,11 +80,6 @@ h5,
 h6 {
   margin: 0.4em 0;
   padding: 0.1em;
-  -webkit-transition: margin-left 0.3s, border-left 0.3s, background 0.3s, font-size 0.3s;
-  -moz-transition: margin-left 0.3s, border-left 0.3s, background 0.3s, font-size 0.3s;
-  -ms-transition: margin-left 0.3s, border-left 0.3s, background 0.3s, font-size 0.3s;
-  -o-transition: margin-left 0.3s, border-left 0.3s, background 0.3s, font-size 0.3s;
-  transition: margin-left 0.3s, border-left 0.3s, background 0.3s, font-size 0.3s;
   min-height: 1.2em;
 }
 p,

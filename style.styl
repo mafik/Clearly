@@ -7,9 +7,6 @@ experimental(prop, args)
   -o-{prop} args
   {prop} args
 
-transition()
-  experimental('transition', arguments)
-
 font-feature-settings()
   experimental('font-feature-settings', arguments)
 
@@ -33,7 +30,7 @@ html
 .active
   border-color #000
   background #fff
-  margin-left 10px
+  experimental(transform, translateX(10px))
   color #223
   box-shadow 0 0 5px #bbb
 
@@ -54,12 +51,12 @@ html
 // Multi-element styles
 
 section, p, ul, ol, blockquote, pre, h1, h2, h3, h4, h5, h6, li, hr
-  transition margin-left .3s, border-color .3s, background .3s, font-size .3s
+  transition -webkit-transform .3s, border-color .3s, background .3s, font-size .3s
+  transition transform .3s, border-color .3s, background .3s, font-size .3s
 
 section, p, ul, ol, blockquote, pre, h1, h2, h3, h4, h5, h6
   margin .4em 0
   padding .1em
-  transition margin-left .3s, border-left .3s, background .3s, font-size .3s
   min-height 1.2em
 
 p, ul, ol, blockquote, pre
