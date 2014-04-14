@@ -1,11 +1,13 @@
 CACHE MANIFEST
-# rev 5
+# rev 6
 CACHE:
 /bg.png
 /clearly.js
 /clearly.math.js
-/d.svg
 /favicon.ico
+/favicon.png
+/tileicon.png
+/tochicon.png
 /index.html
 /LICENSE.html
 /jquery.js
