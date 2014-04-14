@@ -1,8 +1,56 @@
+@font-face {
+  font-family: 'Clear Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Clear Sans'), local('ClearSans-Regular'), url("/ClearSans-Regular.woff") format('woff');
+}
+@font-face {
+  font-family: 'Clear Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Clear Sans Bold'), local('ClearSans-Bold'), url("/ClearSans-Bold.woff") format('woff');
+}
+@font-face {
+  font-family: 'Clear Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Clear Sans Italic'), local('ClearSans-Italic'), url("/ClearSans-Italic.woff") format('woff');
+}
+@font-face {
+  font-family: 'Clear Sans';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Clear Sans Bold Italic'), local('ClearSans-BoldItalic'), url("/ClearSans-BoldItalic.woff") format('woff');
+}
+@font-face {
+  font-family: Dosis;
+  font-style: normal;
+  font-weight: 400;
+  src: local('Dosis Regular'), local('Dosis-Regular'), url("/Dosis-Regular.woff") format('woff');
+}
+@font-face {
+  font-family: Dosis;
+  font-style: normal;
+  font-weight: 700;
+  src: local('Dosis Bold'), local('Dosis-Bold'), url("/Dosis-Bold.woff") format('woff');
+}
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Source Code Pro'), local('SourceCodePro-Regular'), url("/SourceCodePro-Regular.woff") format('woff');
+}
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Source Code Pro Bold'), local('SourceCodePro-Bold'), url("/SourceCodePro-Bold.woff") format('woff');
+}
 body {
   margin: 1em;
 }
 html {
-  font: 16px Ubuntu, sans-serif;
+  font: 16px 'Clear Sans', sans-serif;
   color: #556;
   background: #eee;
   background-image: url("/bg.png");
@@ -99,7 +147,7 @@ blockquote {
 }
 code,
 pre {
-  font-family: "Ubuntu Mono", courier;
+  font-family: "Source Code Pro", courier;
 }
 h1,
 h2,
